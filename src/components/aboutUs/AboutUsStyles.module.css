@@ -1,0 +1,40 @@
+.aboutUs {
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+ }
+
+ .aboutUs h1{
+  color: #fff;
+  margin-bottom: 4rem;
+  font-size: 3rem;
+  text-align: center;
+}
+
+ .aboutUsContainer {
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap:2rem;
+}
+
+.aboutUsContainer p {
+  color: #fff;
+}
+
+.sliderContainer {
+  width: 500px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+
+
+@media screen and (max-width:1000px) {
+  .aboutUsContainer {
+    max-width: 90%;
+    margin: auto;
+    grid-template-columns: 1fr;
+  }
+}

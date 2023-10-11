@@ -1,0 +1,40 @@
+.info {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: rgba(19, 19, 19, 0.8);
+}
+
+.info h2 {
+  color:#fff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.infoBlock {
+  display: flex;
+  align-items: center;
+}
+
+.infoBlock img {
+  margin-right: 3rem;
+  width: 60px;
+  height: 60px;
+}
+
+.infoContainer {
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+}
+
+@media screen and (max-width: 744px) {
+  .infoContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .infoBlock {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,64 @@
+.trainers {
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+ }
+ 
+ .trainers h1{
+   color: #fff;
+   text-align: center;
+   margin-bottom: 4rem;
+   font-size: 3rem;
+ }
+ 
+ .trainersContainer {
+   max-width: 1140px;
+   margin: auto;
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap:30px;
+
+ }
+ 
+ .card{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+   background-color: #222;
+   border-radius: 10px;
+   padding-top: 2rem;
+ }
+
+ .card h2 {
+  font-size: 2rem;
+ }
+ 
+ .avaImage {
+  height: 200px;
+  width:200px;
+  border-radius: 50%;
+  background-position: center;
+  background-size: cover;
+  margin: 1rem;
+ }
+
+ .item {
+   display: flex;
+   gap: 0.5rem;
+   margin-bottom: 1rem;
+ }
+
+ .iconContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+ }
+ 
+ @media screen and (max-width:1000px) {
+   .trainersContainer {
+     max-width: 90%;
+     margin: auto;
+     grid-template-columns: 1fr;
+   }
+ }

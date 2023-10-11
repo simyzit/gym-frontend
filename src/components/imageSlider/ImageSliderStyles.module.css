@@ -1,0 +1,36 @@
+.sliderStyles {
+  height: 100%;
+  position: relative;
+}
+
+.slideStyles {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+}
+
+.leftArrowStyles {
+  cursor: pointer;
+}
+
+.rightArrowStyles {
+  cursor: pointer;
+}
+
+.sliderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dotsContainerStyle {
+  display: flex;
+}
+
+.dotsStyle {
+  color: #fff;
+  cursor: pointer;
+  font-size: 40px;
+}
