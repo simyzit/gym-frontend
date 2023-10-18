@@ -1,6 +1,5 @@
 .trainers {
   width: 100%;
-  margin-top: 3rem;
   margin-bottom: 3rem;
  }
  
@@ -16,7 +15,7 @@
    margin: auto;
    display: grid;
    grid-template-columns: repeat(3,1fr);
-   grid-gap:30px;
+   grid-gap:2rem;
 
  }
  
@@ -24,23 +23,18 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: 1rem;
    background-color: #222;
    border-radius: 10px;
-   padding-top: 2rem;
- }
 
- .card h2 {
-  font-size: 2rem;
  }
  
  .avaImage {
-  height: 200px;
-  width:200px;
+  height: 80px;
+  width:80px;
   border-radius: 50%;
   background-position: center;
   background-size: cover;
-  margin: 1rem;
+  margin-top: 1rem;
  }
 
  .item {
@@ -59,6 +53,6 @@
    .trainersContainer {
      max-width: 90%;
      margin: auto;
-     grid-template-columns: 1fr;
+     grid-template-columns: repeat(2,1fr);
    }
  }

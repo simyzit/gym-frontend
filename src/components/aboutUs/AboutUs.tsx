@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import cl from "./AboutUsStyles.module.css";
 import ImageSlider from "../imageSlider/ImageSlider";
 
-const AboutUs = () => {
+const AboutUs: FC = () => {
   const slides = [
     {
       url: "https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png",

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import cl from "./HeroImgStyles.module.css";
 import introBgImg from "../../assets/intro_bg.jpg";
 import { Link } from "react-router-dom";
 
-const HeroImg = () => {
+const HeroImg: FC = () => {
   return (
     <div className={cl.hero}>
       <div className={cl.mask}>

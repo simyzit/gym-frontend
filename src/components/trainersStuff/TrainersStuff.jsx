@@ -14,6 +14,8 @@ const TrainersStuff = () => {
     { name: "Marina Solovey", url: avaMarina },
     { name: "Masha Olegovna", url: avaMasha },
     { name: "Oleg Kuchko", url: avaOleg },
+    { name: "Masha Viter", url: avaMasha },
+    { name: "Marina Solovey", url: avaMarina },
   ];
 
   return (
@@ -29,13 +31,13 @@ const TrainersStuff = () => {
             <h2 style={{ color: "#fff" }}>{trainer.name}</h2>
             <div className={cl.iconContainer}>
               <a href="https://www.instagram.com/k4club/">
-                <FaInstagram size={40} style={{ color: "#fff" }} />
+                <FaInstagram size={30} style={{ color: "#fff" }} />
               </a>
               <a href="https://www.instagram.com/k4club/">
-                <FaTwitter size={40} style={{ color: "#fff" }} />
+                <FaTwitter size={30} style={{ color: "#fff" }} />
               </a>
               <a href="https://www.instagram.com/k4club/">
-                <FaYoutube size={40} style={{ color: "#fff" }} />
+                <FaYoutube size={30} style={{ color: "#fff" }} />
               </a>
             </div>
           </div>

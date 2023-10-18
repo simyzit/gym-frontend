@@ -1,10 +1,21 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { FC, useCallback, useEffect, useRef, useState } from "react";
 import leftArrow from "../../assets/arrow_left.svg";
 import rightArrow from "../../assets/arrow_right.svg";
 import cl from "./ImageSliderStyles.module.css";
 
-const ImageSlider = ({ slides, parentWidth }) => {
-  const timeRef = useRef(null);
+
+interface ISlide {
+  url: string;
+  title: string;
+}
+
+interface IImageSlideProps {
+  slides: ISlide[];
+  parentWidth: number;
+}
+
+const ImageSlider: FC<IImageSlideProps> = ({ slides, parentWidth }) => {
+  const timeRef = useRef<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
@@ -18,7 +29,7 @@ const ImageSlider = ({ slides, parentWidth }) => {
     setCurrentIndex(newIndex);
   }, [currentIndex, slides]);
 
-  const goToSlide = (slideIndex) => {
+  const goToSlide = (slideIndex: number) => {
     setCurrentIndex(slideIndex);
   };
 

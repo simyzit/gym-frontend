@@ -36,6 +36,11 @@
   color: #FAFF00;
 }
 
+.navbar li p:hover {
+  color: #FAFF00;
+  cursor: pointer;
+}
+
 .hamburger {
   display: none;
 }

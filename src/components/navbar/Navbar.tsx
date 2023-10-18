@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import cl from "./NavbarStyles.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaHome, FaTimes, FaUser } from "react-icons/fa";
 
-const Navbar = () => {
-  const [visible, setVisible] = useState(false);
-  const [color, setColor] = useState(false);
+interface INavbarProps {
+  setModal?: (value: boolean) => void;
+}
+
+const Navbar: FC<INavbarProps> = ({setModal}  ) => {
+  const [visible, setVisible] = useState<boolean>(false);
+  const [color, setColor] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(false) 
 
   const handleVisible = () => {
     setVisible(!visible);
@@ -40,6 +45,29 @@ const Navbar = () => {
         <li>
           <Link to="/trainers">Trainers</Link>
         </li>
+        {!isAuth ?  <li
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          <p onClick={() => setModal?.(true)}>Sign in</p>
+          <FaUser size={15} style={{ color: "#fff" }} />
+        </li>
+        :   
+         <li
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+        }}
+      >
+        <p onClick={() => setModal?.(true)}>Log out</p>
+        <FaUser size={15} style={{ color: "#fff" }} />
+      </li>
+      }
+       
       </ul>
       <div className={cl.hamburger} onClick={handleVisible}>
         {visible ? (
