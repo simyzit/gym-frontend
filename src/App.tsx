@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./index.css";
 import Home from './routes/Home'
 import Membership  from './routes/Membership'
@@ -10,12 +10,11 @@ function App() {
   return (
    <>
     <Routes>
-      <Route path='/' element={<Home />}/>
+      <Route path='/' element={<Home  />}/>
       <Route path='/membership' element={<Membership />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/trainers' element={<Trainers />}/>
       <Route path='*' element={<Home />}/>
-     
     </Routes>
    </>
   );

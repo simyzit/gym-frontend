@@ -6,17 +6,16 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
 import { emailValidation, passwordValidation } from './validation';
-import { fetchAuth } from '../../redux/slices/auth';
+import { fetchAuth, selectIsAuth } from '../../redux/slices/auth';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../redux/store';
+import { ISignInForm } from '../../interfaces/appInterfaces';
+import { Navigate } from 'react-router-dom';
+import Modal from '../UI/modal/Modal';
+
 
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-interface ISignInForm {
-  email: string;
-  password: string
-}
 
 
 const SigninForm: FC = () => {
@@ -25,11 +24,17 @@ const SigninForm: FC = () => {
   const {errors} = useFormState({
     control
   });
+  const isAuth = useAppSelector(selectIsAuth)
 
-  const onSubmit:SubmitHandler<ISignInForm> = (data) => {
-    console.log(data);
+  const onSubmit:SubmitHandler<ISignInForm> = (dataForm) => {
+    console.log(dataForm);
 
-    dispatch(fetchAuth(data))
+    dispatch(fetchAuth(dataForm))
+    
+  }
+
+  if(isAuth) {
+    return <Modal visible={isAuth}> <h2 style={{textAlign:'center'}}>Succes, check your email!!!</h2></Modal>
   }
 
   return (

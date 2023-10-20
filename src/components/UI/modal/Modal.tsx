@@ -9,6 +9,7 @@ interface IModalProps {
 }
 
 const Modal: FC<IModalProps>  = ({ children, visible, setVisible }) => {
+
   const rootClasses = [cl.modal];
 
   if (visible) {

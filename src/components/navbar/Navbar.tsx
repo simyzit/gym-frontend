@@ -3,15 +3,24 @@ import cl from "./NavbarStyles.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FaBars, FaHome, FaTimes, FaUser } from "react-icons/fa";
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { AppDispatch, RootState } from "../../redux/store";
+import { logout, selectIsAuth } from "../../redux/slices/auth";
+import ModalAuthentication from "../modalAuthentication/ModalAuthentication";
 
 interface INavbarProps {
   setModal?: (value: boolean) => void;
 }
 
-const Navbar: FC<INavbarProps> = ({setModal}  ) => {
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+
+const Navbar: FC= ( ) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
-  const [isAuth, setIsAuth] = useState<boolean>(false) 
+  const isAuth =  useAppSelector(selectIsAuth)
+  const dispatch = useAppDispatch();
+  const [modal, setModal] = useState<boolean>(false);
 
   const handleVisible = () => {
     setVisible(!visible);
@@ -25,7 +34,13 @@ const Navbar: FC<INavbarProps> = ({setModal}  ) => {
     }
   };
 
+  const onClickLogout = () => {
+    dispatch(logout());
+  }
+ 
+
   window.addEventListener("scroll", changeColor);
+  
 
   return (
     <div className={color ? `${cl.header} + ${cl.headerBg}` : cl.header}>
@@ -63,7 +78,7 @@ const Navbar: FC<INavbarProps> = ({setModal}  ) => {
           gap: "0.5rem",
         }}
       >
-        <p onClick={() => setModal?.(true)}>Log out</p>
+        <p onClick={() => onClickLogout()}>Log out</p>
         <FaUser size={15} style={{ color: "#fff" }} />
       </li>
       }
@@ -76,6 +91,7 @@ const Navbar: FC<INavbarProps> = ({setModal}  ) => {
           <FaBars size={20} style={{ color: "#fff" }} />
         )}
       </div>
+      <ModalAuthentication modal={modal} setModal={setModal} />
     </div>
   );
 };

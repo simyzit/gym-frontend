@@ -11,8 +11,8 @@ import AuthForm from "../components/signinForm/SigninForm";
 import SignupForm from "../components/signupForm/SignupForm";
 import ModalAuthentication from "../components/modalAuthentication/ModalAuthentication";
 
-const Home: FC = () => {
 
+const Home: FC =()  => {
   const [modal, setModal] = useState<boolean>(false);
   const [value, setValue] = useState<number>(0);
 
