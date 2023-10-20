@@ -42,12 +42,6 @@ const SignupForm: FC = () => {
     }
   }
 
-  if(isRegister) {
-   
-  }
-
-
-  
 
   return (
     <div className={cl.signupForm}>
@@ -73,8 +67,8 @@ const SignupForm: FC = () => {
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
             value={field.value}
-            error={!!errors.firstName?.message}
-            helperText={errors.firstName?.message}
+            error={!!errors.name?.message}
+            helperText={errors.name?.message}
           />
         )}      
       />
