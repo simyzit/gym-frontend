@@ -63,8 +63,7 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch (error: unknown) {
-      if (error instanceof Error)
-        return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error);
     }
   }
 );
@@ -85,7 +84,7 @@ export const login = createAsyncThunk(
       localStorage.setItem("accessToken", res.data.accessToken);
 
       return res.data;
-    } catch (error) {
+    } catch (error: unknown) {
       return thunkApi.rejectWithValue(error);
     }
   }
