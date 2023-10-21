@@ -72,7 +72,6 @@ export const login = createAsyncThunk(
   "auth/login",
   async (credential: ILoginUser, thunkApi) => {
     try {
-      debugger;
       const res = await instance.post("auth/login", {
         email: credential.email,
         password: credential.password,
