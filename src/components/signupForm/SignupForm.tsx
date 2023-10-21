@@ -8,48 +8,45 @@ import { emailValidation, firstNameValidation, passwordValidation, phoneValidati
 import { fetchRegister, selectIsRegister } from '../../redux/slices/register';
 import { AppDispatch, RootState } from '../../redux/store';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { ISignUpForm } from '../../interfaces/appInterfaces.intreface';
+import { Navigate } from 'react-router-dom';
 
 
-interface ISignUpForm {
-  name: string;
-  surname: string;
-  email: string;
-  phone: string;
-  password: string
-}
+
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
+interface ISignupFormProps {
+  setModal: (value: boolean) => void;
+}
 
-
-const SignupForm: FC = () => {
+const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
   const dispatch = useAppDispatch();
   const {handleSubmit, control} = useForm<ISignUpForm>();
   const {errors} = useFormState({
     control
   });
-  const isRegister = useAppSelector(selectIsRegister)
+  const isRegister = useAppSelector(selectIsRegister);
 
 
-  const onSubmit:SubmitHandler<ISignUpForm> = async (values) => {
-    const data = await dispatch(fetchRegister(values));
-
-    console.log('register data', data.payload);
-    
-    if(!data.payload) {
-      //show text "data is not correct"
+  const onSubmit= async (values: ISignUpForm) => {
+    if(!values) {
+      return;
     }
+
+    await dispatch(fetchRegister(values));
+
+    debugger;
+    if(isRegister) {
+      setModal(false);
+    }
+    
   }
 
 
   return (
     <div className={cl.signupForm}>
-      {isRegister ? <Typography  variant='h5' component='div' color={'black'}>
-        Success, check your email!
-     </Typography> 
-     : 
-     <div>
       <Typography  variant='h5' component='div' color={'black'}>
         Sign up
      </Typography>
@@ -151,9 +148,6 @@ const SignupForm: FC = () => {
      
          }}>Sign up</Button>
      </form>
-     </div>
-     }
-     
     </div>
   )
 }

@@ -6,10 +6,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
 import { emailValidation, passwordValidation } from './validation';
-import { fetchAuth, selectIsAuth } from '../../redux/slices/auth';
+import { fetchAuth, selectIsAuth, selectAuthStatus } from '../../redux/slices/auth';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../redux/store';
-import { ISignInForm } from '../../interfaces/appInterfaces';
+import { ISignInForm, ISignInFormProps } from '../../interfaces/appInterfaces.intreface';
 import { Navigate } from 'react-router-dom';
 import Modal from '../UI/modal/Modal';
 
@@ -18,24 +18,29 @@ export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 
-const SigninForm: FC = () => {
+
+
+const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
   const dispatch = useAppDispatch();
   const {handleSubmit, control} = useForm<ISignInForm>();
   const {errors} = useFormState({
     control
   });
-  const isAuth = useAppSelector(selectIsAuth)
+  const isAuth = useAppSelector(selectIsAuth);
 
-  const onSubmit:SubmitHandler<ISignInForm> = (dataForm) => {
-    console.log(dataForm);
+  const onSubmit = async (dataForm: ISignInForm) => {    
+    if(!dataForm){
+      return
+    }
 
-    dispatch(fetchAuth(dataForm))
+    await dispatch(fetchAuth(dataForm));
     
+    if(isAuth) {
+      setModal(false);
+    }
+   
   }
 
-  if(isAuth) {
-    return <Modal visible={isAuth}> <h2 style={{textAlign:'center'}}>Succes, check your email!!!</h2></Modal>
-  }
 
   return (
     <div className={cl.signinForm}>

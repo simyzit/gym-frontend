@@ -13,7 +13,6 @@ import ModalAuthentication from "../components/modalAuthentication/ModalAuthenti
 
 
 const Home: FC =()  => {
-  const [modal, setModal] = useState<boolean>(false);
   const [value, setValue] = useState<number>(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -22,14 +21,13 @@ const Home: FC =()  => {
 
   return (
     <div>
-      <Navbar setModal={setModal} />
+      <Navbar  />
       <HeroImg />
       <Info />
       <MembershipCard  />
       <AboutUs />
       <TrainersStuff /> 
       <Footer />
-      <ModalAuthentication modal={modal} setModal={setModal} />
     </div>
   );
 };

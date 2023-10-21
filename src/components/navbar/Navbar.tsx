@@ -5,7 +5,7 @@ import logo from "../../assets/logo.png";
 import { FaBars, FaHome, FaTimes, FaUser } from "react-icons/fa";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from "../../redux/store";
-import { logout, selectIsAuth } from "../../redux/slices/auth";
+import { fetchLogout, logout, selectIsAuth } from "../../redux/slices/auth";
 import ModalAuthentication from "../modalAuthentication/ModalAuthentication";
 
 interface INavbarProps {
@@ -35,7 +35,8 @@ const Navbar: FC= ( ) => {
   };
 
   const onClickLogout = () => {
-    dispatch(logout());
+    // dispatch(logout());
+    dispatch(fetchLogout())
   }
  
 
