@@ -14,3 +14,9 @@ export interface ISignUpForm {
   phone: string;
   password: string;
 }
+
+export interface ICustomError extends Error {
+  name: string;
+  messsage: string;
+  status: number;
+}

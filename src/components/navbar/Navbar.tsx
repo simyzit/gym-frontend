@@ -5,12 +5,9 @@ import logo from "../../assets/logo.png";
 import { FaBars, FaHome, FaTimes, FaUser } from "react-icons/fa";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from "../../redux/store";
-import { fetchLogout, logout, selectIsAuth } from "../../redux/slices/auth";
 import ModalAuthentication from "../modalAuthentication/ModalAuthentication";
-
-interface INavbarProps {
-  setModal?: (value: boolean) => void;
-}
+import { logout } from "../../redux/auth/authOperation";
+import { useCustomSelector } from "../../redux/selectors";
 
 export const useAppDispatch: () => AppDispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
@@ -18,7 +15,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 const Navbar: FC= ( ) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
-  const isAuth =  useAppSelector(selectIsAuth)
+  const { getIsLoggedIn } = useCustomSelector();
   const dispatch = useAppDispatch();
   const [modal, setModal] = useState<boolean>(false);
 
@@ -35,8 +32,7 @@ const Navbar: FC= ( ) => {
   };
 
   const onClickLogout = () => {
-    // dispatch(logout());
-    dispatch(fetchLogout())
+    dispatch(logout())
   }
  
 
@@ -61,7 +57,7 @@ const Navbar: FC= ( ) => {
         <li>
           <Link to="/trainers">Trainers</Link>
         </li>
-        {!isAuth ?  <li
+        {!getIsLoggedIn ?  <li
           style={{
             display: "flex",
             alignItems: "center",

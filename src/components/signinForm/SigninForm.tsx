@@ -6,12 +6,13 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
 import { emailValidation, passwordValidation } from './validation';
-import { fetchAuth, selectIsAuth, selectAuthStatus } from '../../redux/slices/auth';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../redux/store';
-import { ISignInForm, ISignInFormProps } from '../../interfaces/appInterfaces.intreface';
-import { Navigate } from 'react-router-dom';
-import Modal from '../UI/modal/Modal';
+import { ISignInFormProps } from '../../interfaces/appInterfaces.intreface';
+import {  useNavigate } from 'react-router-dom';
+import { login } from '../../redux/auth/authOperation';
+import { ILoginUser } from '../../interfaces/user.interface';
+import { useCustomSelector } from '../../redux/selectors';
 
 
 export const useAppDispatch: () => AppDispatch = useDispatch
@@ -22,22 +23,25 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
   const dispatch = useAppDispatch();
-  const {handleSubmit, control} = useForm<ISignInForm>();
+  const navigate = useNavigate();
+  const {handleSubmit, control} = useForm<ILoginUser>();
+  const { getIsLoggedIn } = useCustomSelector();
   const {errors} = useFormState({
     control
   });
-  const isAuth = useAppSelector(selectIsAuth);
 
-  const onSubmit = async (dataForm: ISignInForm) => {    
-    if(!dataForm){
+  const onSubmit = async (values: ILoginUser) => {    
+    if(!values){
       return
     }
 
-    await dispatch(fetchAuth(dataForm));
+    await dispatch(login(values));
+   
     
-    if(isAuth) {
-      setModal(false);
-    }
+    setModal(false);
+    navigate('/')
+    
+    
    
   }
 

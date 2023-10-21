@@ -5,11 +5,12 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
 import { emailValidation, firstNameValidation, passwordValidation, phoneValidation } from './validation';
-import { fetchRegister, selectIsRegister } from '../../redux/slices/register';
 import { AppDispatch, RootState } from '../../redux/store';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { ISignUpForm } from '../../interfaces/appInterfaces.intreface';
-import { Navigate } from 'react-router-dom';
+import { register } from '../../redux/auth/authOperation';
+import { IRegisterUser } from '../../interfaces/user.interface';
+
 
 
 
@@ -27,20 +28,16 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
   const {errors} = useFormState({
     control
   });
-  const isRegister = useAppSelector(selectIsRegister);
 
 
-  const onSubmit= async (values: ISignUpForm) => {
+  const onSubmit= async (values: IRegisterUser) => {
     if(!values) {
       return;
     }
 
-    await dispatch(fetchRegister(values));
+    await dispatch(register(values));
 
-    debugger;
-    if(isRegister) {
-      setModal(false);
-    }
+ 
     
   }
 
