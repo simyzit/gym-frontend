@@ -45,9 +45,9 @@ export const surnameValidation = {
 export const phoneValidation = {
   required: "Phone is required",
   validate: (value: string) => {
-    if (value.length > 5) {
+    if (value.length > 5 && value.match("^[0-9]$")) {
       return true;
     }
-    return "Phone must contain at least 5 characters";
+    return "Phone must contain at least 5 numbers";
   },
 };

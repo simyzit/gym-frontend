@@ -75,7 +75,7 @@ const MembershipCard: FC = () => {
       <h1>Gym Membership</h1>
       <div className={cl.cardContainer}>
         {memberships.map((membership) => (
-          <div className={cl.card}>
+          <div className={cl.card} key={membership.name}>
             <div className={cl.heading}>
               <h3>{membership.name}</h3>
               <h3>{membership.price}</h3>

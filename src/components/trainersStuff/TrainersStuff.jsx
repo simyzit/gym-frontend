@@ -8,14 +8,14 @@ import cl from "./TrainersStuffStyles.module.css";
 
 const TrainersStuff = () => {
   const trainers = [
-    { name: "Alex Kolobko", url: avaAlex },
-    { name: "Masha Viter", url: avaMasha },
-    { name: "Oleg Bulba", url: avaOleg },
-    { name: "Marina Solovey", url: avaMarina },
-    { name: "Masha Olegovna", url: avaMasha },
-    { name: "Oleg Kuchko", url: avaOleg },
-    { name: "Masha Viter", url: avaMasha },
-    { name: "Marina Solovey", url: avaMarina },
+    { id: 1, name: "Alex Kolobko", url: avaAlex },
+    { id: 2, name: "Masha Viter", url: avaMasha },
+    { id: 3, name: "Oleg Bulba", url: avaOleg },
+    { id: 4, name: "Marina Solovey", url: avaMarina },
+    { id: 5, name: "Masha Olegovna", url: avaMasha },
+    { id: 6, name: "Oleg Kuchko", url: avaOleg },
+    { id: 7, name: "Masha Viter", url: avaMasha },
+    { id: 8, name: "Marina Solovey", url: avaMarina },
   ];
 
   return (
@@ -23,7 +23,7 @@ const TrainersStuff = () => {
       <h1>Trainers stuff</h1>
       <div className={cl.trainersContainer}>
         {trainers.map((trainer) => (
-          <div className={cl.card}>
+          <div className={cl.card} key={trainer.id}>
             <img
               className={cl.avaImage}
               style={{ backgroundImage: `url(${trainer.url})` }}

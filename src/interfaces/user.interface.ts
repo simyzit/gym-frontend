@@ -34,7 +34,6 @@ export interface RefreshResponse {
 
 export interface IAuthState {
   user: {
-    name: string;
     email: string;
   };
   accessToken: string;
@@ -50,13 +49,11 @@ export interface IRouteProps {
 
 export interface IUserRegistrationPayload {
   email: string;
-  name: string;
   accessToken?: string;
 }
 
 export interface IUserPayload {
   email: string;
-  name: string;
   accessToken: string;
   refreshToken: string;
 }

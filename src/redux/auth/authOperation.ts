@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
 import { ILoginUser, IRegisterUser } from "../../interfaces/user.interface";
-import { ICustomError } from "../../interfaces/appInterfaces.intreface";
+import Notiflix from "notiflix";
 
 const setToken = (token?: string) => {
   if (token) {
@@ -49,6 +49,18 @@ instance.interceptors.response.use(
   }
 );
 
+export const googleApi = createAsyncThunk(
+  "/auth/google",
+  (credentials: any) => {
+    try {
+      setToken(credentials.token);
+      return credentials;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const register = createAsyncThunk(
   "auth/register",
   async (credential: IRegisterUser, thunkApi) => {
@@ -60,9 +72,13 @@ export const register = createAsyncThunk(
         phone: credential.phone,
         password: credential.password,
       });
-
+      Notiflix.Notify.success("Success! Check your email for verfication!");
       return res.data;
-    } catch (error: unknown) {
+    } catch (error: any) {
+      console.log(error);
+      Notiflix.Notify.failure("Email address is already registered", {
+        timeout: 1500,
+      });
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -82,9 +98,15 @@ export const login = createAsyncThunk(
       localStorage.setItem("refreshToken", res.data.refreshToken);
       localStorage.setItem("accessToken", res.data.accessToken);
 
+      Notiflix.Notify.success("Success! You are signed in!");
+
       return res.data;
-    } catch (error: unknown) {
-      return thunkApi.rejectWithValue(error);
+    } catch (error: any) {
+      console.log(error);
+      Notiflix.Notify.failure("Wrong login or password ❗", {
+        timeout: 1500,
+      });
+      return thunkApi.rejectWithValue(error.messsage);
     }
   }
 );

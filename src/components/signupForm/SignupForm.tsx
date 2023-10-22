@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import cl from './SignupFormStyles.module.css';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
@@ -10,6 +10,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { ISignUpForm } from '../../interfaces/appInterfaces.intreface';
 import { register } from '../../redux/auth/authOperation';
 import { IRegisterUser } from '../../interfaces/user.interface';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -28,6 +29,7 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
   const {errors} = useFormState({
     control
   });
+  const navigate = useNavigate();
 
 
   const onSubmit= async (values: IRegisterUser) => {
@@ -37,13 +39,14 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
 
     await dispatch(register(values));
 
- 
+    setModal(false);
+    navigate('/')
     
   }
 
 
   return (
-    <div className={cl.signupForm}>
+    <Box className={cl.signupForm}>
       <Typography  variant='h5' component='div' color={'black'}>
         Sign up
      </Typography>
@@ -60,7 +63,6 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
             className={cl.signupFormInput}
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
-            value={field.value}
             error={!!errors.name?.message}
             helperText={errors.name?.message}
           />
@@ -78,7 +80,6 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
             className={cl.signupFormInput}
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
-            value={field.value}
             error={!!errors.surname?.message}
             helperText={errors.surname?.message}
           />
@@ -96,7 +97,6 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
             className={cl.authFormInput}
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
-            value={field.value}
             error={!!errors.email?.message}
             helperText={errors.email?.message}
           />
@@ -114,7 +114,6 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
             className={cl.signupFormInput}
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
-            value={field.value}
             error={!!errors.phone?.message}
             helperText={errors.phone?.message}
           />
@@ -133,7 +132,6 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
             className={cl.authFormInput}
             fullWidth={true}
             onChange={(e) => field.onChange(e)}
-            value={field.value}
             error={!!errors.password?.message}
             helperText={errors.password?.message}
           />
@@ -145,7 +143,7 @@ const SignupForm: FC<ISignupFormProps> = ({setModal}) => {
      
          }}>Sign up</Button>
      </form>
-    </div>
+    </Box>
   )
 }
 

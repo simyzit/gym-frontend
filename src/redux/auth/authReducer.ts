@@ -10,7 +10,6 @@ export const userRegistrationSuccessReducer = (
   action: PayloadAction<IUserRegistrationPayload>
 ) => {
   state.user.email = action.payload.email;
-  state.user.name = action.payload.name;
   state.isRegister = true;
 };
 
@@ -29,14 +28,13 @@ export const userCurrentSuccessReducer = (
 ) => {
   state.isRefreshing = false;
   state.isLoggedIn = true;
-  state.user.name = action.payload.name;
   state.user.email = action.payload.email;
 };
 
 export const userLogoutSuccessReducer = (state: IAuthState) => {
   state.isLoggedIn = false;
   state.isRefreshing = false;
-  state.user = { name: "", email: "" };
+  state.user = { email: "" };
   state.accessToken = "";
 };
 
@@ -48,4 +46,13 @@ export const rejectedReducer = (state: IAuthState) => {
   state.isLoggedIn = false;
   state.isRefreshing = false;
   state.isRegister = false;
+};
+
+export const userGoogleLoginReducer = (
+  state: IAuthState,
+  action: PayloadAction<IUserPayload>
+) => {
+  state.isLoggedIn = true;
+  state.user.email = action.payload.email;
+  state.accessToken = action.payload.accessToken;
 };
