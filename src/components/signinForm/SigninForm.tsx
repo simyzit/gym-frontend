@@ -93,11 +93,6 @@ const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
         }} >
         Sign in with Google
         </Button>
-        <Button href="https://application-gym.onrender.com/api/auth/facebook/login" variant="outlined" endIcon={<FaFacebook />} fullWidth={true} sx={{
-          marginTop: 2,
-        }}>
-          Sign in with Facebook
-        </Button>
      </form>
     </Box>
   )

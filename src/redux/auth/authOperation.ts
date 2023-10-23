@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
-import { ILoginUser, IRegisterUser } from "../../interfaces/user.interface";
+import {
+  IAuthState,
+  ILoginUser,
+  IRegisterUser,
+} from "../../interfaces/user.interface";
 import Notiflix from "notiflix";
 
 const setToken = (token?: string) => {
@@ -107,6 +111,24 @@ export const login = createAsyncThunk(
         timeout: 1500,
       });
       return thunkApi.rejectWithValue(error.messsage);
+    }
+  }
+);
+
+export const fetchCurrentUser = createAsyncThunk(
+  "/auth/current",
+  async (_, thunkAPI) => {
+    const state: any = thunkAPI.getState();
+    const persistedToken = state.auth.accessToken;
+
+    setToken(persistedToken);
+
+    try {
+      const { data } = await instance.get("user/current");
+      return data;
+    } catch (error: unknown) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

@@ -5,13 +5,15 @@ import Membership  from './routes/Membership'
 import About from './routes/About'
 import Trainers  from './routes/Trainers'
 import { Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
-import { googleApi, logout } from './redux/auth/authOperation';
+import { fetchCurrentUser, googleApi, logout } from './redux/auth/authOperation';
 import { AppDispatch } from './redux/store';
 import { useDispatch } from 'react-redux';
+import { useCustomSelector } from './redux/selectors';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
 function App() {
+  const { getToken: token } = useCustomSelector();
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -23,6 +25,12 @@ function App() {
   const role = searchParams.get('role');
   const surname = searchParams.get('surname');
 
+  useEffect(() => {
+    if(token) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, token]);
+
 
   useEffect(() => {
     if (accessToken) {
@@ -30,6 +38,9 @@ function App() {
       navigate('/')
     }
   }, [ dispatch,  accessToken,  email, avatar, refreshToken, role, surname]);
+
+
+
 
   
   return (

@@ -1,9 +1,16 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { googleApi, login, logout, register } from "./authOperation";
+import {
+  fetchCurrentUser,
+  googleApi,
+  login,
+  logout,
+  register,
+} from "./authOperation";
 import {
   pendingReducer,
   rejectedReducer,
+  userCurrentSuccessReducer,
   userGoogleLoginReducer,
   userLoginSuccessReducer,
   userLogoutSuccessReducer,
@@ -30,6 +37,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, userLoginSuccessReducer)
       .addCase(logout.fulfilled, userLogoutSuccessReducer)
       .addCase(googleApi.fulfilled, userGoogleLoginReducer)
+      .addCase(fetchCurrentUser.fulfilled, userCurrentSuccessReducer)
       .addMatcher(getAction("rejected"), rejectedReducer)
       .addMatcher(getAction("pending"), pendingReducer),
 });
