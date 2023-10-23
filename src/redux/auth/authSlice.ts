@@ -16,20 +16,23 @@ import {
   userLogoutSuccessReducer,
   userRegistrationSuccessReducer,
 } from "./authReducer";
+import { IAuthState } from "../../interfaces/user.interface";
 
 const extraActions = [login, logout, register];
 const getAction = (type: string) =>
   isAnyOf(...extraActions.map((action: any) => action[type]));
 
+const initialState: IAuthState = {
+  user: { email: "" },
+  accessToken: "",
+  isLoggedIn: false,
+  isRefreshing: false,
+  isRegister: false,
+};
+
 export const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: { email: "" },
-    accessToken: "",
-    isLoggedIn: false,
-    isRefreshing: false,
-    isRegister: false,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) =>
     builder

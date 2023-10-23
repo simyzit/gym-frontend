@@ -3,11 +3,13 @@ import { ComponentType } from "react";
 export interface IUser {
   id: string;
   name: string;
+  surname: string;
   email: string;
+  phone: string;
+  avatarURL: string;
+  role: string;
   password: string;
   accessToken: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface IRegisterUser {

@@ -6,9 +6,6 @@ export const useCustomSelector = () => {
     getIsRefreshing: useAppSelector((state) => state.auth.isRefreshing),
     getIsRegister: useAppSelector((state) => state.auth.isRegister),
     getToken: useAppSelector((state) => state.auth.accessToken),
+    getAllPackages: useAppSelector((state) => state.package.allItems),
   };
 };
-
-// export const selectIsAuth = (state) => Boolean(state.auth.data);
-// export const selectAuthStatus = (state) => state.auth.status;
-// export const selectAuthData = (state) => state.auth.status;

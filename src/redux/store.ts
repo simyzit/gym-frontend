@@ -13,6 +13,7 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/authSlice";
+import { packageReducer } from "./package/packageSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -22,7 +23,8 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    package: packageReducer,
+    auth: persistReducer<any, any>(authPersistConfig, authReducer),
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
@@ -32,9 +34,7 @@ export const store = configureStore({
     });
   },
 });
-
 export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
-
 export type AppDispatch = typeof store.dispatch;

@@ -1,10 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
-import {
-  IAuthState,
-  ILoginUser,
-  IRegisterUser,
-} from "../../interfaces/user.interface";
+import { ILoginUser, IRegisterUser } from "../../interfaces/user.interface";
 import Notiflix from "notiflix";
 
 const setToken = (token?: string) => {
