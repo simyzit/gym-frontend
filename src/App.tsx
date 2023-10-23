@@ -45,13 +45,13 @@ function App() {
   
   return (
    <>
-   <HashRouter basename='/'>
+   <Routes>
       <Route path='/' element={<Home  />}/>
       <Route path='/membership' element={<Membership />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/trainers' element={<Trainers />}/>
       <Route path='*' element={<Home />}/>
-    </HashRouter>
+    </Routes>
    </>
   );
 }
