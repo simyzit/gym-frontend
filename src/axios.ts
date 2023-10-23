@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const instance = axios.create({
-  baseURL: "https://application-gym.onrender.com/api",
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
-// process.env.REACT_APP_API_URL
+//
+
+// https://application-gym.onrender.com/api
