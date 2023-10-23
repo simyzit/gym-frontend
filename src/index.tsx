@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <HashRouter basename='/'>
+  
   <Provider store={store}>
     <BrowserRouter basename='/gym-frontend/'>
     <PersistGate loading={null} persistor={persistor}>
@@ -20,6 +20,6 @@ root.render(
     </PersistGate>  
     </BrowserRouter>
   </Provider>
-  </HashRouter>
+
 );
 
