@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/gym-frontend/static/css/main.c530f206.css",
+    "main.js": "/gym-frontend/static/js/main.cbd9f0d7.js",
+    "static/media/intro_bg.jpg": "/gym-frontend/static/media/intro_bg.0bfca371f5ec1ff00333.jpg",
+    "static/media/aboutBg.jpg": "/gym-frontend/static/media/aboutBg.281d0ddf8bae527627d5.jpg",
+    "static/media/masha.jpg": "/gym-frontend/static/media/masha.972abbcfa8c8b948b8dc.jpg",
+    "static/media/marina.jpg": "/gym-frontend/static/media/marina.38c76989198e327e8a1c.jpg",
+    "static/media/alex.jpg": "/gym-frontend/static/media/alex.341f37d4a8ba38517c14.jpg",
+    "static/media/oleg.jpg": "/gym-frontend/static/media/oleg.89cf7803a34354869aa1.jpg",
+    "static/media/logo.png": "/gym-frontend/static/media/logo.b4b85ef8ee2d32452c0f.png",
+    "static/media/icon_ eqipment.svg": "/gym-frontend/static/media/icon_ eqipment.e79994f09761c214ddaf827f7bc5f503.svg",
+    "static/media/icon_ fitnessZones.svg": "/gym-frontend/static/media/icon_ fitnessZones.629b463271eb19c13147e5fdeb73cbf9.svg",
+    "static/media/icon_time.svg": "/gym-frontend/static/media/icon_time.b464b337ce8e6e21dfc605eef95c3087.svg",
+    "static/media/icon_check.svg": "/gym-frontend/static/media/icon_check.e7d6848903ebcb3be485d8da6cd42506.svg",
+    "static/media/icon_line.svg": "/gym-frontend/static/media/icon_line.eeece34d907293d43708caf521c7dbfc.svg",
+    "static/media/arrow_right.svg": "/gym-frontend/static/media/arrow_right.768c13625625f74591077ec6ae3a9fad.svg",
+    "static/media/arrow_left.svg": "/gym-frontend/static/media/arrow_left.ffdff539e7c51438c344ee219e412b0b.svg",
+    "index.html": "/gym-frontend/index.html",
+    "main.c530f206.css.map": "/gym-frontend/static/css/main.c530f206.css.map",
+    "main.cbd9f0d7.js.map": "/gym-frontend/static/js/main.cbd9f0d7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c530f206.css",
+    "static/js/main.cbd9f0d7.js"
+  ]
+}
