@@ -12,14 +12,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  
   <Provider store={store}>
-    <BrowserRouter basename='/gym-frontend/'>
+    <BrowserRouter>
     <PersistGate loading={null} persistor={persistor}>
       <App />
     </PersistGate>  
     </BrowserRouter>
   </Provider>
-
 );
 
