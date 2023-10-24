@@ -4,7 +4,7 @@ import Home from './routes/Home'
 import Membership  from './routes/Membership'
 import About from './routes/About'
 import Trainers  from './routes/Trainers'
-import { HashRouter, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
+import { Route, Router, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchCurrentUser, googleApi, logout } from './redux/auth/authOperation';
 import { AppDispatch } from './redux/store';
 import { useDispatch } from 'react-redux';
@@ -45,13 +45,13 @@ function App() {
   
   return (
    <>
-   <HashRouter basename='/'>
+    <Routes>
       <Route path='/' element={<Home  />}/>
       <Route path='/membership' element={<Membership />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/trainers' element={<Trainers />}/>
       <Route path='*' element={<Home />}/>
-    </HashRouter>
+    </Routes>
    </>
   );
 }
