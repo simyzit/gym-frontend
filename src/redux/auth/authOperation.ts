@@ -112,7 +112,7 @@ export const login = createAsyncThunk(
 );
 
 export const fetchCurrentUser = createAsyncThunk(
-  "/auth/current",
+  "auth/current",
   async (_, thunkAPI) => {
     const state: any = thunkAPI.getState();
     const persistedToken = state.auth.accessToken;
