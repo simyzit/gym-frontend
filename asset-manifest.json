@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gym-frontend/static/css/main.c530f206.css",
-    "main.js": "/gym-frontend/static/js/main.cbd9f0d7.js",
+    "main.js": "/gym-frontend/static/js/main.9dac8bc7.js",
     "static/media/intro_bg.jpg": "/gym-frontend/static/media/intro_bg.0bfca371f5ec1ff00333.jpg",
     "static/media/aboutBg.jpg": "/gym-frontend/static/media/aboutBg.281d0ddf8bae527627d5.jpg",
     "static/media/masha.jpg": "/gym-frontend/static/media/masha.972abbcfa8c8b948b8dc.jpg",
@@ -14,14 +14,14 @@
     "static/media/icon_time.svg": "/gym-frontend/static/media/icon_time.b464b337ce8e6e21dfc605eef95c3087.svg",
     "static/media/icon_check.svg": "/gym-frontend/static/media/icon_check.e7d6848903ebcb3be485d8da6cd42506.svg",
     "static/media/icon_line.svg": "/gym-frontend/static/media/icon_line.eeece34d907293d43708caf521c7dbfc.svg",
+    "index.html": "/gym-frontend/index.html",
     "static/media/arrow_right.svg": "/gym-frontend/static/media/arrow_right.768c13625625f74591077ec6ae3a9fad.svg",
     "static/media/arrow_left.svg": "/gym-frontend/static/media/arrow_left.ffdff539e7c51438c344ee219e412b0b.svg",
-    "index.html": "/gym-frontend/index.html",
     "main.c530f206.css.map": "/gym-frontend/static/css/main.c530f206.css.map",
-    "main.cbd9f0d7.js.map": "/gym-frontend/static/js/main.cbd9f0d7.js.map"
+    "main.9dac8bc7.js.map": "/gym-frontend/static/js/main.9dac8bc7.js.map"
   },
   "entrypoints": [
     "static/css/main.c530f206.css",
-    "static/js/main.cbd9f0d7.js"
+    "static/js/main.9dac8bc7.js"
   ]
 }
