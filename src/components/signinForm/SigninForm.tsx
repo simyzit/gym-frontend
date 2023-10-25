@@ -3,7 +3,7 @@ import cl from './SigninFormStyles.module.css';
 import { Box, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { SubmitHandler, useForm, Controller, useFormState } from "react-hook-form";
+import {  useForm, Controller, useFormState } from "react-hook-form";
 import { emailValidation, passwordValidation } from './validation';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import type { RootState, AppDispatch } from '../../redux/store';
@@ -12,7 +12,7 @@ import {  useNavigate } from 'react-router-dom';
 import { login } from '../../redux/auth/authOperation';
 import { ILoginUser } from '../../interfaces/user.interface';
 import { useCustomSelector } from '../../redux/selectors';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
+import {  FaGoogle } from 'react-icons/fa';
 
 
 export const useAppDispatch: () => AppDispatch = useDispatch

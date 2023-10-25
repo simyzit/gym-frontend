@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <HashRouter basename='/'>
+    <BrowserRouter basename='/'>
     <PersistGate loading={null} persistor={persistor}>
       <App />
     </PersistGate>  
-    </HashRouter>
+    </BrowserRouter>
   </Provider>
 );
 
