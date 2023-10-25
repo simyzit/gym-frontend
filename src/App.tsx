@@ -26,14 +26,13 @@ function App() {
   const surname = searchParams.get('surname');
 
   useEffect(() => {
-    if(token) {
+    if(token || accessToken ) {
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, token]);
 
 
   useEffect(() => {
-    debugger
     if (accessToken) {
       dispatch(googleApi({ accessToken,  email, avatar, refreshToken, role, surname }));
       navigate('/')
