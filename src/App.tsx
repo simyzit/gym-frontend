@@ -26,7 +26,7 @@ function App() {
   const surname = searchParams.get('surname');
 
   useEffect(() => {
-    if(token || accessToken ) {
+    if(token) {
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, token]);
