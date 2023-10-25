@@ -54,6 +54,10 @@ export const googleApi = createAsyncThunk(
   (credentials: any) => {
     try {
       setToken(credentials.token);
+
+      localStorage.setItem("refreshToken", credentials.refreshToken);
+      localStorage.setItem("accessToken", credentials.accessToken);
+
       return credentials;
     } catch (error) {
       console.log(error);
