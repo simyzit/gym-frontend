@@ -9,11 +9,12 @@ import { fetchCurrentUser, googleApi, logout } from './redux/auth/authOperation'
 import { AppDispatch } from './redux/store';
 import { useDispatch } from 'react-redux';
 import { useCustomSelector } from './redux/selectors';
+import Loader from './components/UI/loader/loader';
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
 function App() {
-  const { getToken: token } = useCustomSelector();
+  const { getToken: token, getIsRefreshing: isRefreshing } = useCustomSelector(); 
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -45,13 +46,15 @@ function App() {
   
   return (
    <>
+   {!isRefreshing ?
     <Routes>
-      <Route path='/' element={<Home  />}/>
-      <Route path='/membership' element={<Membership />}/>
-      <Route path='/about' element={<About />}/>
-      <Route path='/trainers' element={<Trainers />}/>
-      <Route path='*' element={<Home />}/>
-    </Routes>
+    <Route path='/' element={<Home  />}/>
+    <Route path='/membership' element={<Membership />}/>
+    <Route path='/about' element={<About />}/>
+    <Route path='/trainers' element={<Trainers />}/>
+    <Route path='*' element={<Home />}/>
+  </Routes> : <div style={{display:"flex", justifyContent:'center', alignItems:'center'}}><Loader /></div>
+}
    </>
   );
 }

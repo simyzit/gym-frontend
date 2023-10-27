@@ -87,9 +87,8 @@ const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
         }}>
           Sign in
         </Button>
-        <Button  href="https://application-gym.onrender.com/api/auth/google/login" variant="outlined" endIcon={<FaGoogle  />} fullWidth={true} sx={{
+        <Button  href="https://gym-app-back.vercel.app/api/auth/google/login" variant="outlined" endIcon={<FaGoogle  />} fullWidth={true} sx={{
           marginTop: 2,
-         
         }} >
         Sign in with Google
         </Button>

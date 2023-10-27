@@ -10,7 +10,6 @@ import Loader from "../UI/loader/loader";
 
 
 const MembershipCard: FC = () => {
-debugger
 const { getAllPackages } = useCustomSelector();
 const dispatch = useAppDispatch();
 
