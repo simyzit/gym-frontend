@@ -10,6 +10,7 @@ import Loader from "../UI/loader/loader";
 
 
 const MembershipCard: FC = () => {
+debugger
 const { getAllPackages } = useCustomSelector();
 const dispatch = useAppDispatch();
 
@@ -21,7 +22,7 @@ const dispatch = useAppDispatch();
   return (
     <div className={cl.membership}>
       <h1>Gym Membership</h1>
-      {getAllPackages.length > 0 ? 
+      {getAllPackages?.length > 0 ? 
       <div className={cl.cardContainer}>
       { getAllPackages.map((membership) => (
          <div className={cl.card} key={membership._id}>
