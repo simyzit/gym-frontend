@@ -15,7 +15,7 @@ export const emailValidation = {
 export const passwordValidation = {
   required: "Password is required",
   validate: (value: string) => {
-    if (value.length > 8) {
+    if (value.length >= 8) {
       return true;
     }
     return "Password must contain at least 8 characters";
