@@ -57,23 +57,22 @@ const Navbar: FC= ( ) => {
         <li>
           <Link to="/trainers">Trainers</Link>
         </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        {getIsLoggedIn && 
+         <li>
+         <Link to="/cabinet">Cabinet</Link>
+       </li> }
         {!getIsLoggedIn ?  <li
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-          }}
+          className={cl.linkStyle}
         >
-          <p onClick={() => setModal?.(true)}>Sign in</p>
+          <p onClick={() => setModal?.(true)} style={{color:'#fff'}}>Sign in</p>
           <FaUser size={15} style={{ color: "#fff" }} />
         </li>
         :   
          <li
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.5rem",
-        }}
+         className={cl.linkStyle}
       >
         <p onClick={() => onClickLogout()}>Log out</p>
         <FaUser size={15} style={{ color: "#fff" }} />

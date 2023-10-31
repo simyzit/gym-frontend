@@ -44,7 +44,7 @@ const dispatch = useAppDispatch();
        ))
       }
       </div>
-      : <Loader/>
+      :  <Loader/>
       }
     </div>
   );
