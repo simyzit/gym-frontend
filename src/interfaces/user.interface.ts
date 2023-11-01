@@ -25,6 +25,10 @@ export interface ILoginUser {
   password: string;
 }
 
+export interface IForgetPassword {
+  email: string;
+}
+
 export interface ILoginResponse {
   accessToken: string;
 }

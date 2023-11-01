@@ -10,9 +10,10 @@ import type { RootState, AppDispatch } from '../../redux/store';
 import { ISignInFormProps } from '../../interfaces/appInterfaces.intreface';
 import {  useNavigate } from 'react-router-dom';
 import { login } from '../../redux/auth/authOperation';
-import { ILoginUser } from '../../interfaces/user.interface';
+import { IForgetPassword, ILoginUser } from '../../interfaces/user.interface';
 import { useCustomSelector } from '../../redux/selectors';
 import {  FaGoogle } from 'react-icons/fa';
+import { instance } from '../../axios';
 
 
 export const useAppDispatch: () => AppDispatch = useDispatch
@@ -29,24 +30,36 @@ const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
   const {errors} = useFormState({
     control
   });
+  const [toggleForm, setTogleForm ] = React.useState(false);
 
   const onSubmit = async (values: ILoginUser) => {    
     if(!values){
       return
     }
 
-    await dispatch(login(values));
+    if(!values.password) {
+      console.log(values);
+      debugger;
+      instance.patch(`auth/forgot/password/${values.email}`)
 
-    setModal(false);
-    navigate('/');
+      setModal(false);
+      navigate('/');
+      
+    } else {
+      await dispatch(login(values));
+
+      setModal(false);
+      navigate('/');
+    }
+   
   }
-
 
   return (
     <Box  className={cl.signinForm}>
-     <Typography  variant='h5' component='div' color={'black'} >
+      {!toggleForm ? <>
+      <Typography  variant='h5' component='div' color={'black'} >
         Sign in
-     </Typography>
+      </Typography>
      <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>
       <Controller 
         control={control}
@@ -82,6 +95,9 @@ const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
           />
         )}      
       />
+        <p onClick={() => setTogleForm(true)} className={cl.link}>
+          Forgot your password
+        </p>
         <Button type='submit' variant="contained" fullWidth={true} sx={{
           marginTop: 2,
         }}>
@@ -93,6 +109,36 @@ const SigninForm: FC<ISignInFormProps> = ({setModal}) => {
         Sign in with Google
         </Button>
      </form>
+      </> : 
+      <>
+      <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>
+      <Typography style={{fontSize: 16}}  variant='h5' color={'black'} >
+         Forgot your password
+      </Typography>
+      <Controller 
+        control={control}
+        name='email'
+        rules={emailValidation}
+        render={({field}) => (
+          <TextField 
+            label="Email"
+            size='small'
+            margin='normal'
+            fullWidth={true}
+            onChange={field.onChange}
+            error={!!errors.email?.message}
+            helperText={errors.email?.message}
+          />
+        )}      
+      />
+        <Button type='submit' variant="contained" fullWidth={true} sx={{
+          marginTop: 2,
+        }}>
+          Send
+        </Button>
+      </form>
+      </>}
+     
     </Box>
   )
 }

@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useCustomSelector } from './redux/selectors';
 import Loader from './components/UI/loader/loader';
 import Dashboard from './routes/Dashboard';
+import SuccessVerified from './routes/SuccessVerified';
 
 
 
@@ -53,14 +54,16 @@ function App() {
           <Route path='/membership' element={<Membership />}/>
           <Route path='/about' element={<About />}/>
           <Route path='/trainers' element={<Trainers />}/>
+          <Route path='/success' element={<SuccessVerified />}/>
+          <Route path='/dashboard' element={<Dashboard />}/>
           <Route path='*' element={<Home />}/>
-        </Routes> : <div className='center'><Loader /></div>
+        </Routes> 
    </>
   );
 }
 
 
-//Futute route for Dashboard
-{/* <Route path='/dashboard' element={<Dashboard />}/> */}
+
+ 
 
 export default App;
