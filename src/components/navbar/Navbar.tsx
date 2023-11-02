@@ -57,12 +57,9 @@ const Navbar: FC= ( ) => {
         <li>
           <Link to="/trainers">Trainers</Link>
         </li>
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
         {getIsLoggedIn && 
          <li>
-         <Link to="/cabinet">Cabinet</Link>
+         <Link to="/dashboard">Dashboard</Link>
        </li> }
         {!getIsLoggedIn ?  <li
           className={cl.linkStyle}
@@ -74,7 +71,7 @@ const Navbar: FC= ( ) => {
          <li
          className={cl.linkStyle}
       >
-        <p onClick={() => onClickLogout()}>Log out</p>
+        <p onClick={() => onClickLogout()} style={{color:'#fff'}}>Log out</p>
         <FaUser size={15} style={{ color: "#fff" }} />
       </li>
       }

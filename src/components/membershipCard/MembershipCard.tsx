@@ -6,10 +6,13 @@ import { useAppDispatch } from "../signinForm/SigninForm";
 import { fetchPackages } from "../../redux/package/packageOperation";
 import { IPackage } from "../../interfaces/package.interface";
 import Loader from "../UI/loader/loader";
+import { FaCross, FaCrosshairs, FaEdit } from "react-icons/fa";
 
+interface IPropsMembershipCard {
+  isAdmin?: boolean,
+}
 
-
-const MembershipCard: FC = () => {
+const MembershipCard: FC<IPropsMembershipCard> = ({isAdmin}) => {
 const { getAllPackages } = useCustomSelector();
 const dispatch = useAppDispatch();
 
@@ -20,7 +23,7 @@ const dispatch = useAppDispatch();
   
   return (
     <div className={cl.membership}>
-      <h1>Gym Membership</h1>
+      {!isAdmin ? <h1>Gym Membership</h1> : <></>}
       {getAllPackages?.length > 0 ? 
       <div className={cl.cardContainer}>
       { getAllPackages.map((membership) => (
@@ -30,12 +33,13 @@ const dispatch = useAppDispatch();
              <h3>{membership.price}$</h3>
              <h3>{membership.days > 1 ? membership.days + 'days' : membership.days  + 'day' } </h3>
            </div>
+          
            <span className={cl.bar}></span>
            <div className={cl.membershipItemsContainer}>
              {membership.description.map((item, index) => (
                <div className={cl.item} key={index}>
                  <img src={checkIcon} alt="Check Icon" />
-                 <p>{item}</p>
+                 <p style={{color:'white'}}>{item}</p>
                </div>
              ))}
            </div>

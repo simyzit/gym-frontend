@@ -7,5 +7,6 @@ export const useCustomSelector = () => {
     getIsRegister: useAppSelector((state) => state.auth.isRegister),
     getToken: useAppSelector((state) => state.auth.accessToken),
     getAllPackages: useAppSelector((state) => state.package.allItems),
+    getAllUsers: useAppSelector((state) => state.user.allItems),
   };
 };

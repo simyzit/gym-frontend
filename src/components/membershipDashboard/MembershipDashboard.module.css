@@ -26,6 +26,7 @@
   background-color: rgb(240, 242, 245);
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  padding: 20px;
 }
 
 p {
@@ -52,9 +53,4 @@ p {
    height: 70px;
    width: 70px;
  }
- 
-
- 
-
- 
  

@@ -63,3 +63,18 @@ export interface IUserPayload {
   accessToken: string;
   refreshToken: string;
 }
+
+export interface IUser {
+  _id: string;
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  avatarURL: string;
+  role: string;
+}
+
+export interface IUserStore {
+  allItems: IUser[];
+  isLoading: boolean;
+}

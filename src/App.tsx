@@ -12,6 +12,10 @@ import { useCustomSelector } from './redux/selectors';
 import Loader from './components/UI/loader/loader';
 import Dashboard from './routes/Dashboard';
 import SuccessVerified from './routes/SuccessVerified';
+import Users from './components/users/users';
+import MembershipDashboard from './components/membershipDashboard/MembershipDashboard';
+import ProfileDashboard from './components/profileDashboard/ProfileDashvoard';
+import OrdersDashboard from './components/ordersDashboard/OrdersDashvoard';
 
 
 
@@ -56,6 +60,10 @@ function App() {
           <Route path='/trainers' element={<Trainers />}/>
           <Route path='/success' element={<SuccessVerified />}/>
           <Route path='/dashboard' element={<Dashboard />}/>
+          <Route path='/users' element={<Users />}/>
+          <Route path='/membership-dashboard' element={<MembershipDashboard />}/>
+          <Route path='/profile' element={<ProfileDashboard />}/>
+          <Route path='/orders' element={<OrdersDashboard />}/>
           <Route path='*' element={<Home />}/>
         </Routes> 
    </>
