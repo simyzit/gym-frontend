@@ -29,92 +29,10 @@ const Users = () => {
     }
   }, [dispatch, token]);
   
-  let users = [];
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [dispatch]);
-
-  console.log(getAllUsers);
-  console.log(getUser);
-  
-  
-
-  users = [  { 
-    id: "1",
-    email: "testuser@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "https://as1.ftcdn.net/v2/jpg/01/88/77/70/1000_F_188777023_l0BzfxSZL3QfXa24dHX3SbxZUBOx0chb.jpg",
-    role: "user"
-  },
-  {
-    id: "2",
-    email: "alexcow@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "//www.gravatar.com/avatar/a18bf786efb76a3d56ee69a3b343952a?d=mp",
-    role: "user"
-  },
-  {
-    id: "3",
-    email: "kolya@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "https://as1.ftcdn.net/v2/jpg/01/88/77/70/1000_F_188777023_l0BzfxSZL3QfXa24dHX3SbxZUBOx0chb.jpg",
-    role: "admin"
-  },
-  {
-    id: "4",
-    email: "testuser@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "//www.gravatar.com/avatar/a18bf786efb76a3d56ee69a3b343952a?d=mp",
-    role: "user"
-  },
-  {
-    id: "5",
-    email: "testuser@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "https://as1.ftcdn.net/v2/jpg/01/88/77/70/1000_F_188777023_l0BzfxSZL3QfXa24dHX3SbxZUBOx0chb.jpg",
-    role: "admin"
-  },
-  {
-    id: "6",
-    email: "testuser@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "https://as1.ftcdn.net/v2/jpg/01/88/77/70/1000_F_188777023_l0BzfxSZL3QfXa24dHX3SbxZUBOx0chb.jpg",
-    role: "user"
-  },
-  {
-    id: "7",
-    email: "alex@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "//www.gravatar.com/avatar/a18bf786efb76a3d56ee69a3b343952a?d=mp",
-    role: "user"
-  },
-  {
-    id: "8",
-    email: "max@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "//www.gravatar.com/avatar/a18bf786efb76a3d56ee69a3b343952a?d=mp",
-    role: "user"
-  },
-  {
-    id: "9",
-    email: "roob@gmail.com",
-    name: "testuser",
-    surname: "test",
-    avatarURL: "https://as1.ftcdn.net/v2/jpg/01/88/77/70/1000_F_188777023_l0BzfxSZL3QfXa24dHX3SbxZUBOx0chb.jpg",
-    role: "admin"
-  }];
-  
-
- 
+  }, [dispatch]); 
   
 
   const columns = useMemo(() => [
@@ -162,8 +80,8 @@ const Users = () => {
     </Typography>
     <DataGrid 
       columns={columns}
-      rows={users}
-      getRowId={row => row.id}
+      rows={getAllUsers}
+      getRowId={row => row._id}
       initialState={{
         pagination: {
           paginationModel: { page: 0, pageSize: 5 },

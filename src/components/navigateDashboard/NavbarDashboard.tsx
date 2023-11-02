@@ -13,9 +13,6 @@ const NavbarDashboard = () => {
    <>
    <ul className={visible ? `${cl.navbar} + ${cl.active}` : cl.navbar}>
       <li>
-          <Link to="/dashboard">Dashboard</Link>
-      </li>
-      <li>
           <Link to="/profile">Profile</Link>
       </li>
       <li>
