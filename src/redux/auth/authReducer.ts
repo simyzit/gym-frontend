@@ -28,7 +28,7 @@ export const userCurrentSuccessReducer = (
 ) => {
   state.isRefreshing = false;
   state.isLoggedIn = true;
-  state.user.email = action.payload.email;
+  state.user = action.payload;
 };
 
 export const userLogoutSuccessReducer = (state: IAuthState) => {

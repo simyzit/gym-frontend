@@ -5,7 +5,7 @@ import { useCustomSelector } from '../../redux/selectors';
 import { fetchUsers } from '../../redux/user/userOperation';
 import { AppDispatch, RootState } from '../../redux/store';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/auth/authOperation';
+import { fetchCurrentUser, logout } from '../../redux/auth/authOperation';
 import { Link } from 'react-router-dom';
 import cl from "./users.module.css";
 import logo from "../../assets/logo.png";
@@ -21,7 +21,13 @@ const Users = () => {
   const dispatch = useAppDispatch();
   const [modal, setModal] = useState<boolean>(false);
   const { getAllUsers } = useCustomSelector();
-  const { getIsLoggedIn } = useCustomSelector();
+  const { getIsLoggedIn,  getToken: token, getUser } = useCustomSelector();
+
+  useEffect(() => {
+    if(token) {
+      dispatch(fetchCurrentUser());
+    }
+  }, [dispatch, token]);
   
   let users = [];
 
@@ -30,6 +36,7 @@ const Users = () => {
   }, [dispatch]);
 
   console.log(getAllUsers);
+  console.log(getUser);
   
   
 
