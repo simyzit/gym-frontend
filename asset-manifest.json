@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gym-frontend/static/css/main.bf3736c2.css",
-    "main.js": "/gym-frontend/static/js/main.10daae3d.js",
+    "main.css": "/gym-frontend/static/css/main.b188d358.css",
+    "main.js": "/gym-frontend/static/js/main.2c4d5179.js",
     "static/media/intro_bg.jpg": "/gym-frontend/static/media/intro_bg.0bfca371f5ec1ff00333.jpg",
     "static/media/aboutBg.jpg": "/gym-frontend/static/media/aboutBg.281d0ddf8bae527627d5.jpg",
     "static/media/masha.jpg": "/gym-frontend/static/media/masha.972abbcfa8c8b948b8dc.jpg",
@@ -9,6 +9,7 @@
     "static/media/alex.jpg": "/gym-frontend/static/media/alex.341f37d4a8ba38517c14.jpg",
     "static/media/oleg.jpg": "/gym-frontend/static/media/oleg.89cf7803a34354869aa1.jpg",
     "static/media/logo.png": "/gym-frontend/static/media/logo.b4b85ef8ee2d32452c0f.png",
+    "static/media/success.png": "/gym-frontend/static/media/success.92d0d06a8ccd0a54e59a.png",
     "static/media/icon_ eqipment.svg": "/gym-frontend/static/media/icon_ eqipment.e79994f09761c214ddaf827f7bc5f503.svg",
     "static/media/icon_ fitnessZones.svg": "/gym-frontend/static/media/icon_ fitnessZones.629b463271eb19c13147e5fdeb73cbf9.svg",
     "static/media/icon_time.svg": "/gym-frontend/static/media/icon_time.b464b337ce8e6e21dfc605eef95c3087.svg",
@@ -17,11 +18,11 @@
     "index.html": "/gym-frontend/index.html",
     "static/media/arrow_right.svg": "/gym-frontend/static/media/arrow_right.768c13625625f74591077ec6ae3a9fad.svg",
     "static/media/arrow_left.svg": "/gym-frontend/static/media/arrow_left.ffdff539e7c51438c344ee219e412b0b.svg",
-    "main.bf3736c2.css.map": "/gym-frontend/static/css/main.bf3736c2.css.map",
-    "main.10daae3d.js.map": "/gym-frontend/static/js/main.10daae3d.js.map"
+    "main.b188d358.css.map": "/gym-frontend/static/css/main.b188d358.css.map",
+    "main.2c4d5179.js.map": "/gym-frontend/static/js/main.2c4d5179.js.map"
   },
   "entrypoints": [
-    "static/css/main.bf3736c2.css",
-    "static/js/main.10daae3d.js"
+    "static/css/main.b188d358.css",
+    "static/js/main.2c4d5179.js"
   ]
 }
