@@ -118,10 +118,10 @@ export const login = createAsyncThunk(
 export const fetchCurrentUser = createAsyncThunk(
   "auth/current",
   async (_, thunkAPI) => {
-    // const state: any = thunkAPI.getState();
-    // const persistedToken = state.auth.accessToken;
+    const state: any = thunkAPI.getState();
+    const persistedToken = state.auth.accessToken;
 
-    // setToken(persistedToken);
+    setToken(persistedToken);
 
     try {
       const { data } = await instance.get("user/current");

@@ -1,7 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { IPackage, IPackageStore } from "../../interfaces/package.interface";
-import { fetchPackages } from "./packageOperation";
+import { deletePackage, fetchPackages } from "./packageOperation";
 import {
+  deletePackageReducer,
   getAllPackagesReducer,
   pendingPackageReducer,
   rejectedPackageReducer,
@@ -23,6 +24,7 @@ const packageSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchPackages.fulfilled, getAllPackagesReducer)
+      .addCase(deletePackage.fulfilled, deletePackageReducer)
       .addMatcher(getAction("pending"), pendingPackageReducer)
       .addMatcher(getAction("rejected"), rejectedPackageReducer),
 });

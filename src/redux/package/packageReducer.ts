@@ -16,3 +16,14 @@ export const pendingPackageReducer = (state: IPackageStore) => {
 export const rejectedPackageReducer = (state: IPackageStore) => {
   state.isLoading = false;
 };
+
+export const deletePackageReducer = (
+  state: IPackageStore,
+  action: PayloadAction<IPackage>
+) => {
+  console.log(action.payload._id);
+  state.isLoading = false;
+  state.allItems = state.allItems.filter(
+    (item) => item._id !== action.payload._id
+  );
+};

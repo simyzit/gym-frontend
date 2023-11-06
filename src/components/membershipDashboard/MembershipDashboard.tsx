@@ -11,12 +11,7 @@ const MembershipDashboard = () => {
   return (
     <div className={cl.container}>
       <header className={cl.header}></header>
-      <section className={cl.section}>
-      <div className={cl.containerLogo}>
-      <Link to="/">
-        <img className={cl.logo} src={logo} alt="Logo" />
-      </Link>
-      </div>  
+      <section className={cl.section}> 
       <NavbarDashboard />
       </section>
       <main className={cl.main}>
@@ -24,9 +19,9 @@ const MembershipDashboard = () => {
       variant="h5"
       component="h5"
       sx={{textAlign: "center", mt:3, mb: 3}}
-    >
-      Manage memberships
-    </Typography>
+      >
+        Manage memberships
+      </Typography>
        <MembershipCard isAdmin={true}/>
       </main>
     </div>

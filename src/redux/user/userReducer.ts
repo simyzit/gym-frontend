@@ -16,3 +16,18 @@ export const pendingUserReducer = (state: IUserStore) => {
 export const rejectedUserReducer = (state: IUserStore) => {
   state.isLoading = false;
 };
+
+export const deleteUserReducer = (
+  state: IUserStore,
+  action: PayloadAction<IUser>
+) => {
+  console.log("payload", action.payload._id);
+  console.log("before filter", state.allItems);
+
+  state.isLoading = false;
+  state.allItems = state.allItems.filter(
+    (item) => item._id !== action.payload._id
+  );
+
+  console.log("after", state.allItems);
+};

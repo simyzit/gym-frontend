@@ -10,11 +10,6 @@ const OrdersDashboard = () => {
     <div className={cl.container}>
       <header className={cl.header}></header>
       <section className={cl.section}>
-      <div className={cl.containerLogo}>
-      <Link to="/">
-        <img className={cl.logo} src={logo} alt="Logo" />
-      </Link>
-      </div>  
       <NavbarDashboard />
       </section>
       <main className={cl.main}>

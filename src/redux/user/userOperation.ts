@@ -55,3 +55,16 @@ export const fetchUsers = createAsyncThunk("user", async (_, thunkApi) => {
     if (error instanceof Error) return thunkApi.rejectWithValue(error.message);
   }
 });
+
+export const deleteUser = createAsyncThunk(
+  "user/delete",
+  async (data: string, thunkApi) => {
+    try {
+      const todo = await instance.delete(`/user/${data}`);
+      return todo.data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

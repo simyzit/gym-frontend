@@ -1,11 +1,12 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
+  deleteUserReducer,
   getAllUsersReducer,
   pendingUserReducer,
   rejectedUserReducer,
 } from "./userReducer";
 import { fetchPackages } from "../package/packageOperation";
-import { fetchUsers } from "./userOperation";
+import { deleteUser, fetchUsers } from "./userOperation";
 import { IUserStore } from "../../interfaces/user.interface";
 
 const initialState: IUserStore = {
@@ -24,6 +25,7 @@ const userSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(fetchUsers.fulfilled, getAllUsersReducer)
+      .addCase(deleteUser.fulfilled, deleteUserReducer)
       .addMatcher(getAction("pending"), pendingUserReducer)
       .addMatcher(getAction("rejected"), rejectedUserReducer),
 });

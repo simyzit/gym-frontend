@@ -59,7 +59,7 @@ const Navbar: FC= ( ) => {
         </li>
         {getIsLoggedIn && 
          <li>
-         <Link to="/dashboard">Dashboard</Link>
+         <Link to="/profile">Dashboard</Link>
        </li> }
         {!getIsLoggedIn ?  <li
           className={cl.linkStyle}

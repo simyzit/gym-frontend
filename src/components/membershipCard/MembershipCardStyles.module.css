@@ -62,6 +62,14 @@
   
 }
 
+.iconContainer {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  margin: 20px;
+}
+
+
 @media screen and (max-width:1000px) {
   .cardContainer {
     max-width: 90%;
