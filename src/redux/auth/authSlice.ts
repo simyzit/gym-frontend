@@ -1,15 +1,19 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
 import {
+  editUser,
   fetchCurrentUser,
   googleApi,
   login,
   logout,
   register,
+  updateAvatar,
 } from "./authOperation";
 import {
+  editUserReducer,
   pendingReducer,
   rejectedReducer,
+  updateAvatarReducer,
   userCurrentSuccessReducer,
   userGoogleLoginReducer,
   userLoginSuccessReducer,
@@ -23,7 +27,7 @@ const getAction = (type: string) =>
   isAnyOf(...extraActions.map((action: any) => action[type]));
 
 const initialState: IAuthState = {
-  user: { email: "" },
+  user: { email: "", name: "", surname: "", phone: "" },
   accessToken: "",
   isLoggedIn: false,
   isRefreshing: false,
@@ -41,6 +45,8 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, userLogoutSuccessReducer)
       .addCase(googleApi.fulfilled, userGoogleLoginReducer)
       .addCase(fetchCurrentUser.fulfilled, userCurrentSuccessReducer)
+      .addCase(editUser.fulfilled, editUserReducer)
+      .addCase(updateAvatar.fulfilled, updateAvatarReducer)
       .addMatcher(getAction("rejected"), rejectedReducer)
       .addMatcher(getAction("pending"), pendingReducer),
 });

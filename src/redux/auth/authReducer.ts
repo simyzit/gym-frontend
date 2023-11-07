@@ -56,3 +56,20 @@ export const userGoogleLoginReducer = (
   state.user.email = action.payload.email;
   state.accessToken = action.payload.accessToken;
 };
+
+export const editUserReducer = (
+  state: IAuthState,
+  action: PayloadAction<IUserPayload>
+) => {
+  state.user.name = action.payload.name;
+  state.user.surname = action.payload.surname;
+  state.user.email = action.payload.email;
+  state.user.phone = action.payload.phone;
+};
+
+export const updateAvatarReducer = (
+  state: IAuthState,
+  action: PayloadAction<IUserPayload>
+) => {
+  state.user.avatarURL = action.payload.avatarURL;
+};

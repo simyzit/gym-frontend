@@ -27,3 +27,15 @@ export const deletePackageReducer = (
     (item) => item._id !== action.payload._id
   );
 };
+
+export const editPackageReduccer = (
+  state: IPackageStore,
+  action: PayloadAction<IPackage>
+) => {
+  state.isLoading = false;
+  const index = state.allItems.findIndex(
+    (item, index) => item._id === action.payload._id
+  );
+
+  state.allItems[index] = action.payload;
+};

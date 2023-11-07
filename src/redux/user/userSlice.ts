@@ -6,8 +6,9 @@ import {
   rejectedUserReducer,
 } from "./userReducer";
 import { fetchPackages } from "../package/packageOperation";
-import { deleteUser, fetchUsers } from "./userOperation";
+import { deleteUser, editInformationUser, fetchUsers } from "./userOperation";
 import { IUserStore } from "../../interfaces/user.interface";
+import { editUserReducer } from "../auth/authReducer";
 
 const initialState: IUserStore = {
   allItems: [],

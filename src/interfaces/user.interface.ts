@@ -40,7 +40,11 @@ export interface RefreshResponse {
 
 export interface IAuthState {
   user: {
-    email: string;
+    name?: string;
+    surname?: string;
+    email?: string;
+    phone?: string;
+    avatarURL?: string;
   };
   accessToken: string;
   isLoggedIn: boolean;
@@ -59,7 +63,11 @@ export interface IUserRegistrationPayload {
 }
 
 export interface IUserPayload {
+  name: string;
+  surname: string;
   email: string;
+  phone: string;
+  avatarURL: string;
   accessToken: string;
   refreshToken: string;
 }

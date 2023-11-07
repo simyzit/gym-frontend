@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
-import { ILoginUser, IRegisterUser } from "../../interfaces/user.interface";
+import {
+  ILoginUser,
+  IRegisterUser,
+  IUserPayload,
+} from "../../interfaces/user.interface";
 import Notiflix from "notiflix";
 
 const setToken = (token?: string) => {
@@ -141,3 +145,39 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
     if (error instanceof Error) return thunkApi.rejectWithValue(error.message);
   }
 });
+
+export const editUser = createAsyncThunk(
+  "user/edit",
+  async (data: IUserPayload, thunkApi) => {
+    try {
+      const user = await instance.patch(`/user/profile`, {
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+      });
+
+      Notiflix.Notify.success("Information updated!");
+      return user.data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateAvatar = createAsyncThunk(
+  "user/avatar",
+  async (data: File, thunkApi) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", data);
+      const avatar = await instance.patch(`/user/avatar`, formData);
+
+      Notiflix.Notify.success("Avatar updated!");
+      return avatar.data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

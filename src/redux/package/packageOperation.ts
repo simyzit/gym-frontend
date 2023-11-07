@@ -1,5 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../axios";
+import { IPackage } from "../../interfaces/package.interface";
+import Notiflix from "notiflix";
 
 export const fetchPackages = createAsyncThunk(
   "package/all",
@@ -15,11 +17,31 @@ export const fetchPackages = createAsyncThunk(
 );
 
 export const deletePackage = createAsyncThunk(
-  "package",
+  "package/delete",
   async (data: string, thunkApi) => {
     try {
-      const todo = await instance.delete(`/package/${data}`);
-      return todo.data;
+      const packageData = await instance.delete(`/package/${data}`);
+      Notiflix.Notify.success("Package deleted!");
+      return packageData.data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editPackage = createAsyncThunk(
+  "package/edit",
+  async (data: IPackage, thunkApi) => {
+    try {
+      const packageData = await instance.patch(`/package/${data._id}`, {
+        name: data.name,
+        days: +data.days,
+        price: +data.price,
+      });
+
+      Notiflix.Notify.success("Package updated!");
+      return packageData.data;
     } catch (error: unknown) {
       if (error instanceof Error)
         return thunkApi.rejectWithValue(error.message);

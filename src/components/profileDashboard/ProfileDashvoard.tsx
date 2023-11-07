@@ -4,14 +4,21 @@ import NavbarDashboard from "../navigateDashboard/NavbarDashboard";
 import cl from "./ProfileDashboard.module.css";
 import logo from "../../assets/logo.png";
 import { useCustomSelector } from "../../redux/selectors";
-import { fetchCurrentUser } from "../../redux/auth/authOperation";
+import {
+  editUser,
+  fetchCurrentUser,
+  updateAvatar,
+} from "../../redux/auth/authOperation";
 import { useAppDispatch } from "../signinForm/SigninForm";
 import { fetchUsers } from "../../redux/user/userOperation";
 import { Button, TextField, Typography, styled } from "@mui/material";
 import { Controller, useForm, useFormState } from "react-hook-form";
-import { IUser } from "../../interfaces/user.interface";
+import { IUser, IUserPayload } from "../../interfaces/user.interface";
 import { emailValidation } from "../signinForm/validation";
-import { firstNameValidation } from "../signupForm/validation";
+import {
+  firstNameValidation,
+  surnameValidation,
+} from "../signupForm/validation";
 import { FaCloud } from "react-icons/fa";
 
 const VisuallyHiddenInput = styled("input")({
@@ -27,15 +34,16 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const ProfileDashboard = () => {
-  const [imageSelected, setImageSelected] = useState<any>();
+  const [imageSelected, setImageSelected] = useState<any>(null);
   const dispatch = useAppDispatch();
   const { getIsLoggedIn, getToken: token, getUser: user } = useCustomSelector();
   const { handleSubmit, control, register, setValue, getValues } =
-    useForm<IUser>({
+    useForm<IUserPayload>({
       defaultValues: {
         name: "",
         surname: "",
         email: "",
+        phone: "",
       },
     });
   const { errors } = useFormState({
@@ -52,21 +60,23 @@ const ProfileDashboard = () => {
     setValue("name", user.name);
     setValue("surname", user.surname);
     setValue("email", user.email);
+    setValue("phone", user.phone);
   }, [user]);
 
-  const onSubmit = async (values: IUser) => {
+  const onSubmit = async (values: IUserPayload) => {
     if (!values) {
       return;
     }
+    dispatch(editUser(values));
+  };
 
-    console.log(getValues(["name", "surname", "email"]));
+  const handleFileSelect = (event: any) => {
+    setImageSelected(event.target.files[0]);
   };
 
   const uploadImage = (files: any) => {
-    console.log(files[0]);
+    dispatch(updateAvatar(imageSelected));
   };
-
-  console.log(user);
 
   return (
     <div className={cl.container}>
@@ -99,15 +109,18 @@ const ProfileDashboard = () => {
               component="label"
               variant="contained"
               startIcon={<FaCloud />}
-              onClick={uploadImage}
             >
               Upload file
-              <VisuallyHiddenInput
-                type="file"
-                onChange={(e) => {
-                  setImageSelected(e.target.files);
-                }}
-              />
+              <VisuallyHiddenInput type="file" onChange={handleFileSelect} />
+            </Button>
+
+            <Button
+              component="label"
+              variant="contained"
+              onClick={uploadImage}
+              sx={{ marginTop: 2 }}
+            >
+              Update
             </Button>
           </div>
 
@@ -139,7 +152,7 @@ const ProfileDashboard = () => {
                 <Controller
                   control={control}
                   name="surname"
-                  rules={firstNameValidation}
+                  rules={surnameValidation}
                   render={() => (
                     <TextField
                       size="small"
@@ -166,7 +179,20 @@ const ProfileDashboard = () => {
                     />
                   )}
                 />
-
+                <Controller
+                  control={control}
+                  name="phone"
+                  render={() => (
+                    <TextField
+                      size="small"
+                      margin="normal"
+                      fullWidth={true}
+                      error={!!errors.phone?.message}
+                      helperText={errors.phone?.message}
+                      {...register("phone")}
+                    />
+                  )}
+                />
                 <Button
                   type="submit"
                   variant="contained"

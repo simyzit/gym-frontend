@@ -5,11 +5,12 @@ import { useCustomSelector } from "../../redux/selectors";
 import { useAppDispatch } from "../signinForm/SigninForm";
 import {
   deletePackage,
+  editPackage,
   fetchPackages,
 } from "../../redux/package/packageOperation";
 import { IPackage } from "../../interfaces/package.interface";
 import Loader from "../UI/loader/loader";
-import { FaCross, FaCrosshairs, FaEdit } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import Modal from "../UI/modal/Modal";
 import {
   Button,
@@ -21,8 +22,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Controller, useForm, useFormState } from "react-hook-form";
-import { emailValidation } from "../signinForm/validation";
+import {
+  Controller,
+  SubmitHandler,
+  useForm,
+  useFormState,
+} from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 interface IPropsMembershipCard {
   isAdmin?: boolean;
@@ -30,6 +36,7 @@ interface IPropsMembershipCard {
 
 const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [currentId, setCurrentId] = useState<string>("");
   const { getAllPackages } = useCustomSelector();
   const dispatch = useAppDispatch();
   const { register, handleSubmit, control, getValues, setValue } =
@@ -44,23 +51,16 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
   const { errors } = useFormState({
     control,
   });
-  const [price, setPrice] = useState<number>(0);
-  const [days, setDays] = useState<number>(0);
-
-  const handleChange = (event: SelectChangeEvent) => {
-    setPrice(event.target.value as unknown as number);
-  };
 
   useEffect(() => {
     dispatch(fetchPackages());
   }, [dispatch]);
 
-  console.log(isAdmin);
-
   const handleEdit = (value: IPackage) => {
     setValue("name", value.name);
     setValue("price", value.price);
     setValue("days", value.days);
+    setCurrentId(value._id);
     setVisible(true);
   };
 
@@ -68,7 +68,11 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
     dispatch(deletePackage(id));
   };
 
-  const onSubmit = () => {};
+  const onSubmit: SubmitHandler<IPackage> = (values) => {
+    const data = { ...values, _id: currentId };
+    dispatch(editPackage(data));
+    setVisible(false);
+  };
 
   return (
     <div className={cl.membership}>
