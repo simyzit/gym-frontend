@@ -29,6 +29,10 @@
   grid-gap: 40px;
 }
 
+h2,p {
+  color: #fff;
+}
+
 @media screen and (max-width: 744px) {
   .infoContainer {
     grid-template-columns: 1fr;
