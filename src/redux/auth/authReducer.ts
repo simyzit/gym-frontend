@@ -26,6 +26,8 @@ export const userCurrentSuccessReducer = (
   state: IAuthState,
   action: PayloadAction<IUserPayload>
 ) => {
+  console.log(action);
+
   state.isRefreshing = false;
   state.isLoggedIn = true;
   state.user = action.payload;

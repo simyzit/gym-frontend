@@ -134,6 +134,7 @@ const ProfileDashboard = () => {
 
             <div className={cl.fielsContainer}>
               <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>
+                <label>Name</label>
                 <Controller
                   control={control}
                   name="name"
@@ -149,6 +150,7 @@ const ProfileDashboard = () => {
                     />
                   )}
                 />
+                <label>Surname</label>
                 <Controller
                   control={control}
                   name="surname"
@@ -164,6 +166,7 @@ const ProfileDashboard = () => {
                     />
                   )}
                 />
+                <label>Email</label>
                 <Controller
                   control={control}
                   name="email"
@@ -179,6 +182,7 @@ const ProfileDashboard = () => {
                     />
                   )}
                 />
+                <label>Phone</label>
                 <Controller
                   control={control}
                   name="phone"

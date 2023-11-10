@@ -43,7 +43,7 @@ const SigninForm: FC<ISignInFormProps> = ({ setModal }) => {
       await dispatch(login(values));
 
       setModal(false);
-      navigate("/");
+      navigate("/profile");
     }
   };
 

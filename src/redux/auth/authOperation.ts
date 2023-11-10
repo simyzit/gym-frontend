@@ -36,8 +36,6 @@ instance.interceptors.response.use(
       const refreshToken = localStorage.getItem("refreshToken");
 
       instance.post("/auth/refresh", { refreshToken }).then((response) => {
-        console.log(response);
-
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);
         originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
@@ -125,11 +123,11 @@ export const fetchCurrentUser = createAsyncThunk(
   "auth/current",
   async (_, thunkAPI) => {
     try {
-      const { data } = await instance.get("user/current");
-      return data;
+      const res = await instance.get("/user/current");
+      return res.data;
     } catch (error: unknown) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error);
+      if (error instanceof Error)
+        return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -1,18 +1,18 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import cl from "./NavbarStyles.module.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FaBars, FaHome, FaTimes, FaUser } from "react-icons/fa";
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import ModalAuthentication from "../modalAuthentication/ModalAuthentication";
 import { logout } from "../../redux/auth/authOperation";
 import { useCustomSelector } from "../../redux/selectors";
 
-export const useAppDispatch: () => AppDispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-const Navbar: FC= ( ) => {
+const Navbar: FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [color, setColor] = useState<boolean>(false);
   const { getIsLoggedIn } = useCustomSelector();
@@ -32,12 +32,10 @@ const Navbar: FC= ( ) => {
   };
 
   const onClickLogout = () => {
-    dispatch(logout())
-  }
- 
+    dispatch(logout());
+  };
 
   window.addEventListener("scroll", changeColor);
-  
 
   return (
     <div className={color ? `${cl.header} + ${cl.headerBg}` : cl.header}>
@@ -57,25 +55,26 @@ const Navbar: FC= ( ) => {
         <li>
           <Link to="/trainers">Trainers</Link>
         </li>
-        {getIsLoggedIn && 
-         <li>
-         <Link to="/profile">Dashboard</Link>
-       </li> }
-        {!getIsLoggedIn ?  <li
-          className={cl.linkStyle}
-        >
-          <p onClick={() => setModal?.(true)} style={{color:'#fff'}}>Sign in</p>
-          <FaUser size={15} style={{ color: "#fff" }} />
-        </li>
-        :   
-         <li
-         className={cl.linkStyle}
-      >
-        <p onClick={() => onClickLogout()} style={{color:'#fff'}}>Log out</p>
-        <FaUser size={15} style={{ color: "#fff" }} />
-      </li>
-      }
-       
+        {getIsLoggedIn && (
+          <li>
+            <Link to="/profile">Dashboard</Link>
+          </li>
+        )}
+        {!getIsLoggedIn ? (
+          <li className={cl.linkStyle}>
+            <p onClick={() => setModal?.(true)} style={{ color: "#fff" }}>
+              Sign in
+            </p>
+            <FaUser size={15} style={{ color: "#fff" }} />
+          </li>
+        ) : (
+          <li className={cl.linkStyle}>
+            <p onClick={() => onClickLogout()} style={{ color: "#fff" }}>
+              Log out
+            </p>
+            <FaUser size={15} style={{ color: "#fff" }} />
+          </li>
+        )}
       </ul>
       <div className={cl.hamburger} onClick={handleVisible}>
         {visible ? (

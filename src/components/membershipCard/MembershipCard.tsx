@@ -4,6 +4,7 @@ import checkIcon from "../../assets/icon_check.svg";
 import { useCustomSelector } from "../../redux/selectors";
 import { useAppDispatch } from "../signinForm/SigninForm";
 import {
+  buyPackage,
   deletePackage,
   editPackage,
   fetchPackages,
@@ -35,6 +36,7 @@ interface IPropsMembershipCard {
 }
 
 const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
+  const { getUser: user } = useCustomSelector();
   const [visible, setVisible] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState<string>("");
   const { getAllPackages } = useCustomSelector();
@@ -74,6 +76,10 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
     setVisible(false);
   };
 
+  const handleBuy = (id: string) => {
+    dispatch(buyPackage(id));
+  };
+
   return (
     <div className={cl.membership}>
       {!isAdmin ? <h1>Gym Membership</h1> : <></>}
@@ -81,18 +87,23 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
         <div className={cl.cardContainer}>
           {getAllPackages.map((membership) => (
             <div className={cl.card} key={membership._id}>
-              <div className={cl.iconContainer}>
-                <FaEdit
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleEdit(membership)}
-                />
-                <p
-                  style={{ cursor: "pointer", color: "#fff" }}
-                  onClick={() => handleDelete(membership._id)}
-                >
-                  X
-                </p>
-              </div>
+              {isAdmin ? (
+                <div className={cl.iconContainer}>
+                  <FaEdit
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleEdit(membership)}
+                  />
+                  <p
+                    style={{ cursor: "pointer", color: "#fff" }}
+                    onClick={() => handleDelete(membership._id)}
+                  >
+                    X
+                  </p>
+                </div>
+              ) : (
+                <></>
+              )}
+
               <div className={cl.heading}>
                 <h3>{membership.name}</h3>
                 <h3>{membership.price}$</h3>
@@ -113,7 +124,9 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
                 ))}
               </div>
 
-              <button className="btn">Buy</button>
+              <button className="btn" onClick={() => handleBuy(membership._id)}>
+                Buy
+              </button>
             </div>
           ))}
           <Modal visible={visible} setVisible={setVisible}>

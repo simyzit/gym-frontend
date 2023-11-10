@@ -7,9 +7,7 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
-  TextField,
   Typography,
-  gridClasses,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React, { useEffect, useMemo, useState } from "react";
@@ -35,7 +33,6 @@ const Users = () => {
   const dispatch = useAppDispatch();
   const [modal, setModal] = useState<boolean>(false);
   const { getAllUsers } = useCustomSelector();
-  const { getIsLoggedIn, getToken: token, getUser } = useCustomSelector();
   const { register, handleSubmit, control, getValues, setValue } =
     useForm<IUser>({
       defaultValues: {
@@ -57,12 +54,6 @@ const Users = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value as string);
   };
-
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchCurrentUser());
-    }
-  }, [dispatch, token]);
 
   useEffect(() => {
     dispatch(fetchUsers());

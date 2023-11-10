@@ -1,3 +1,5 @@
+import { ComponentType } from "react";
+
 export interface ISignInForm {
   email: string;
   password: string;
@@ -19,4 +21,9 @@ export interface ICustomError extends Error {
   name: string;
   messsage: string;
   status: number;
+}
+
+export interface IRouteProps {
+  component: ComponentType;
+  redirectTo?: string;
 }
