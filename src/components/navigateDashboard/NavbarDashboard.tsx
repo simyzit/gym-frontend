@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import cl from "./NavbarDashboard.module.css";
 import logo from "../../assets/logo.png";
-import { Avatar } from '@mui/material';
 
 const NavbarDashboard = () => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -12,31 +11,31 @@ const NavbarDashboard = () => {
   };
 
   return (
-   <>
-    <div className={cl.containerLogo}>
-      <Link to="/">
-        <img className={cl.logo} src={logo} alt="Logo" />
-      </Link>
+    <>
+      <div className={cl.containerLogo}>
+        <Link to="/">
+          <img className={cl.logo} src={logo} alt="Logo" />
+        </Link>
       </div>
-   <ul className={visible ? `${cl.navbar} + ${cl.active}` : cl.navbar}>
-      <li>
+      <ul className={visible ? `${cl.navbar} + ${cl.active}` : cl.navbar}>
+        <li>
           <Link to="/profile">Profile</Link>
-      </li>
-      <li>
+        </li>
+        <li>
           <Link to="/users">Users</Link>
-      </li>
-      <li>
+        </li>
+        <li>
           <Link to="/membership-dashboard">Memberships</Link>
-      </li>
-      <li>
+        </li>
+        <li>
           <Link to="/orders">Orders</Link>
-      </li>
-      <li>
+        </li>
+        <li>
           <Link to="/">Main page</Link>
-      </li>
+        </li>
       </ul>
-   </>
-  )
-}
+    </>
+  );
+};
 
-export default NavbarDashboard
+export default NavbarDashboard;
