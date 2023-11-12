@@ -12,7 +12,7 @@ const HeroImg2: FC<IHeroImg2Props> = ({ heading, text }) => {
     <div className={cl.heroImg}>
       <div className={cl.heading}>
         <h1>{heading}</h1>
-        <p>{text}</p>
+        <p style={{ color: "#fff" }}>{text}</p>
       </div>
     </div>
   );
