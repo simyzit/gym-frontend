@@ -7,8 +7,6 @@ export const PrivateRoute = () => {
   const { getIsLoggedIn: isLoggedIn, getIsRefreshing: isRefreshing } =
     useCustomSelector();
 
-  console.log(isLoggedIn);
-
   const shouldRedirect = !isLoggedIn && !isRefreshing;
 
   return shouldRedirect ? <Navigate to="/" /> : <Outlet />;

@@ -45,6 +45,7 @@ export interface IAuthState {
     email?: string;
     phone?: string;
     avatarURL?: string;
+    qrCode?: string;
   };
   accessToken: string;
   isLoggedIn: boolean;
@@ -70,6 +71,7 @@ export interface IUserPayload {
   avatarURL: string;
   accessToken: string;
   refreshToken: string;
+  qrCode: string;
 }
 
 export interface IUser {
