@@ -26,6 +26,26 @@ export const deleteUser = createAsyncThunk(
   }
 );
 
+export const editUser = createAsyncThunk(
+  "user/edit",
+  async (data: IUser, thunkApi) => {
+    try {
+      const user = await instance.patch(`/user/${data._id}`, {
+        name: data.name,
+        surname: data.surname,
+        phone: data.phone,
+        email: data.email,
+        role: data.role,
+      });
+
+      return user.data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const editInformationUser = createAsyncThunk(
   "package/edit",
   async (data: IUser, thunkApi) => {

@@ -3,6 +3,7 @@ import { instance } from "../../axios";
 import {
   ILoginUser,
   IRegisterUser,
+  IUser,
   IUserPayload,
 } from "../../interfaces/user.interface";
 import Notiflix from "notiflix";
@@ -139,12 +140,13 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
 
 export const editUser = createAsyncThunk(
   "user/edit",
-  async (data: IUserPayload, thunkApi) => {
+  async (data: IUser, thunkApi) => {
     try {
       const user = await instance.patch(`/user/profile`, {
         name: data.name,
         surname: data.surname,
         email: data.email,
+        phone: data.phone,
       });
 
       Notiflix.Notify.success("Information updated!");

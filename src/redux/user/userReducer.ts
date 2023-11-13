@@ -21,15 +21,21 @@ export const deleteUserReducer = (
   state: IUserStore,
   action: PayloadAction<IUser>
 ) => {
-  console.log("payload", action.payload._id);
-  console.log("before filter", state.allItems);
-
   state.isLoading = false;
   state.allItems = state.allItems.filter(
     (item) => item._id !== action.payload._id
   );
+};
 
-  console.log("after", state.allItems);
+export const editUserReducer = (
+  state: IUserStore,
+  action: PayloadAction<IUser>
+) => {
+  state.isLoading = false;
+  const index = state.allItems.findIndex(
+    (item, index) => item._id === action.payload._id
+  );
+  state.allItems[index] = action.payload;
 };
 
 export const editPackageReduccer = (

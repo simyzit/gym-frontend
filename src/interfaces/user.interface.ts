@@ -8,8 +8,9 @@ export interface IUser {
   phone: string;
   avatarURL: string;
   role: string;
+  qrCode?: string;
   password: string;
-  accessToken: string;
+  accessToken?: string;
 }
 
 export interface IRegisterUser {
@@ -45,7 +46,9 @@ export interface IAuthState {
     email?: string;
     phone?: string;
     avatarURL?: string;
+    role?: string;
     qrCode?: string;
+    city?: string;
   };
   accessToken: string;
   isLoggedIn: boolean;
@@ -71,7 +74,8 @@ export interface IUserPayload {
   avatarURL: string;
   accessToken: string;
   refreshToken: string;
-  qrCode: string;
+  role: string;
+  qrCode?: string;
 }
 
 export interface IUser {

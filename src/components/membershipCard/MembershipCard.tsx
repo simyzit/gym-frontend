@@ -38,6 +38,7 @@ interface IPropsMembershipCard {
 const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
   const { getUser: user } = useCustomSelector();
   const [visible, setVisible] = useState<boolean>(false);
+  const [visibleConfirm, setVisibleConfirm] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState<string>("");
   const { getAllPackages } = useCustomSelector();
   const dispatch = useAppDispatch();
@@ -76,8 +77,9 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
     setVisible(false);
   };
 
-  const handleBuy = (id: string) => {
-    dispatch(buyPackage(id));
+  const handleBuy = () => {
+    dispatch(buyPackage(currentId));
+    setVisibleConfirm(false);
   };
 
   return (
@@ -124,11 +126,41 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
                 ))}
               </div>
 
-              <button className="btn" onClick={() => handleBuy(membership._id)}>
+              <button
+                className="btn"
+                onClick={() => {
+                  setVisibleConfirm(true);
+                  setCurrentId(membership._id);
+                }}
+              >
                 Buy
               </button>
             </div>
           ))}
+          <Modal visible={visibleConfirm} setVisible={setVisibleConfirm}>
+            <p>Are you sure?</p>
+            <Button
+              variant="contained"
+              fullWidth={true}
+              sx={{
+                marginTop: 2,
+              }}
+              onClick={() => handleBuy()}
+            >
+              Sure
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              fullWidth={true}
+              sx={{
+                marginTop: 2,
+              }}
+              onClick={() => setVisibleConfirm(false)}
+            >
+              Not sure
+            </Button>
+          </Modal>
           <Modal visible={visible} setVisible={setVisible}>
             <form className={cl.form} onSubmit={handleSubmit(onSubmit)}>
               <Typography style={{ fontSize: 16 }} variant="h5" color={"black"}>

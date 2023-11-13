@@ -1,14 +1,14 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   deleteUserReducer,
+  editUserReducer,
   getAllUsersReducer,
   pendingUserReducer,
   rejectedUserReducer,
 } from "./userReducer";
 import { fetchPackages } from "../package/packageOperation";
-import { deleteUser, editInformationUser, fetchUsers } from "./userOperation";
+import { deleteUser, editUser, fetchUsers } from "./userOperation";
 import { IUserStore } from "../../interfaces/user.interface";
-import { editUserReducer } from "../auth/authReducer";
 
 const initialState: IUserStore = {
   allItems: [],
@@ -27,6 +27,7 @@ const userSlice = createSlice({
     builder
       .addCase(fetchUsers.fulfilled, getAllUsersReducer)
       .addCase(deleteUser.fulfilled, deleteUserReducer)
+      .addCase(editUser.fulfilled, editUserReducer)
       .addMatcher(getAction("pending"), pendingUserReducer)
       .addMatcher(getAction("rejected"), rejectedUserReducer),
 });

@@ -17,7 +17,6 @@ export const userLoginSuccessReducer = (
   state: IAuthState,
   action: PayloadAction<IUserPayload>
 ) => {
-  debugger;
   state.isLoggedIn = true;
   state.accessToken = action.payload.accessToken;
   state.user.email = action.payload.email;

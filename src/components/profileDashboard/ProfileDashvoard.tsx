@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import NavbarDashboard from "../navigateDashboard/NavbarDashboard";
 import cl from "./ProfileDashboard.module.css";
-import logo from "../../assets/logo.png";
 import { useCustomSelector } from "../../redux/selectors";
 import {
   editUser,
@@ -63,7 +62,7 @@ const ProfileDashboard = () => {
     setValue("phone", user.phone);
   }, [user]);
 
-  const onSubmit = async (values: IUserPayload) => {
+  const onSubmit = async (values: any) => {
     if (!values) {
       return;
     }
@@ -144,8 +143,8 @@ const ProfileDashboard = () => {
                       size="small"
                       margin="normal"
                       fullWidth={true}
-                      error={!!errors.email?.message}
-                      helperText={errors.email?.message}
+                      error={!!errors.name?.message}
+                      helperText={errors.name?.message}
                       {...register("name")}
                     />
                   )}
@@ -160,8 +159,8 @@ const ProfileDashboard = () => {
                       size="small"
                       margin="normal"
                       fullWidth={true}
-                      error={!!errors.email?.message}
-                      helperText={errors.email?.message}
+                      error={!!errors.surname?.message}
+                      helperText={errors.surname?.message}
                       {...register("surname")}
                     />
                   )}
