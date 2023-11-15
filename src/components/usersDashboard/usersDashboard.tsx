@@ -39,7 +39,7 @@ const Users = () => {
   const [modal, setModal] = useState<boolean>(false);
   const [confirm, setConfirm] = useState<boolean>(false);
   const [currentValues, setCurrentValues] = useState<IUser>();
-  const { getAllUsers } = useCustomSelector();
+  const { getAllUsers, getUser: user } = useCustomSelector();
   const [visibleConfirm, setVisibleConfirm] = useState<boolean>(false);
   const { register, handleSubmit, control, setValue } = useForm<IUser>({
     defaultValues: {
@@ -60,6 +60,7 @@ const Users = () => {
 
   const handleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value as string);
+    setValue("role", event.target.value);
   };
 
   useEffect(() => {
@@ -67,66 +68,82 @@ const Users = () => {
   }, [dispatch]);
 
   const columns = useMemo(
-    () => [
-      {
-        field: "avatarURL",
-        headerName: "Avatar",
-        width: 100,
-        renderCell: (params: { row: { avatarURL: string | undefined } }) => (
-          <Avatar src={params.row.avatarURL} />
-        ),
-        sortable: false,
-        filterable: false,
-      },
-      { field: "name", headerName: "Name", width: 170 },
-      { field: "surname", headerName: "Surname", width: 170 },
-      { field: "email", headerName: "Email", width: 200 },
-      { field: "phone", headerName: "Phone", width: 200 },
-      { field: "role", headerName: "Role", width: 100 },
-      { field: "_id", headerName: "Id", width: 220 },
-      {
-        field: "edit",
-        headerName: "edit",
-        width: 100,
-        filterable: false,
-        sortable: false,
-        renderCell: (cellValues: any) => {
-          return (
-            <Button
-              style={{ cursor: "pointer" }}
-              variant="contained"
-              color="primary"
-              onClick={(e) => {
-                handleEdit(e, cellValues);
-              }}
-            >
-              Edit
-            </Button>
-          );
-        },
-      },
-      {
-        field: "delete",
-        headerName: "delete",
-        width: 100,
-        filterable: false,
-        sortable: false,
-        renderCell: (cellValues: any) => {
-          return (
-            <Button
-              style={{ cursor: "pointer" }}
-              variant="contained"
-              color="error"
-              onClick={(e) => {
-                handleDelete(e, cellValues);
-              }}
-            >
-              Delete
-            </Button>
-          );
-        },
-      },
-    ],
+    () =>
+      user.role === "admin"
+        ? [
+            {
+              field: "avatarURL",
+              headerName: "Avatar",
+              width: 100,
+              renderCell: (params: {
+                row: { avatarURL: string | undefined };
+              }) => <Avatar src={params.row.avatarURL} />,
+              sortable: false,
+              filterable: false,
+            },
+            { field: "name", headerName: "Name", width: 170 },
+            { field: "email", headerName: "Email", width: 200 },
+            { field: "phone", headerName: "Phone", width: 200 },
+            { field: "role", headerName: "Role", width: 100 },
+            {
+              field: "edit",
+              headerName: "edit",
+              width: 100,
+              filterable: false,
+              sortable: false,
+              renderCell: (cellValues: any) => {
+                return (
+                  <Button
+                    style={{ cursor: "pointer" }}
+                    variant="contained"
+                    color="primary"
+                    onClick={(e) => {
+                      handleEdit(e, cellValues);
+                    }}
+                  >
+                    Edit
+                  </Button>
+                );
+              },
+            },
+            {
+              field: "delete",
+              headerName: "delete",
+              width: 100,
+              filterable: false,
+              sortable: false,
+              renderCell: (cellValues: any) => {
+                return (
+                  <Button
+                    style={{ cursor: "pointer" }}
+                    variant="contained"
+                    color="error"
+                    onClick={(e) => {
+                      handleDelete(e, cellValues);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                );
+              },
+            },
+          ]
+        : [
+            {
+              field: "avatarURL",
+              headerName: "Avatar",
+              width: 100,
+              renderCell: (params: {
+                row: { avatarURL: string | undefined };
+              }) => <Avatar src={params.row.avatarURL} />,
+              sortable: false,
+              filterable: false,
+            },
+            { field: "name", headerName: "Name", width: 170 },
+            { field: "email", headerName: "Email", width: 200 },
+            { field: "phone", headerName: "Phone", width: 200 },
+            { field: "role", headerName: "Role", width: 100 },
+          ],
     []
   );
 
@@ -147,6 +164,7 @@ const Users = () => {
     cellVaues: { row: IUser }
   ) => {
     handleVisible();
+    setRole(cellVaues.row.role);
     setValue("name", cellVaues.row.name);
     setValue("surname", cellVaues.row.surname);
     setValue("email", cellVaues.row.email);
@@ -164,10 +182,6 @@ const Users = () => {
 
   const handleVisible = () => {
     setVisible(!visible);
-  };
-
-  const onClickLogout = () => {
-    dispatch(logout());
   };
 
   return (

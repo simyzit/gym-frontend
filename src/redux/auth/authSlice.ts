@@ -27,7 +27,15 @@ const getAction = (type: string) =>
   isAnyOf(...extraActions.map((action: any) => action[type]));
 
 const initialState: IAuthState = {
-  user: { email: "", name: "", surname: "", phone: "", qrCode: "" },
+  user: {
+    email: "",
+    name: "",
+    surname: "",
+    phone: "",
+    role: "",
+    avatarURL: "",
+    qrCode: "",
+  },
   accessToken: "",
   isLoggedIn: false,
   isRefreshing: false,

@@ -3,11 +3,24 @@ import { instance } from "../../axios";
 import { IPackage } from "../../interfaces/package.interface";
 import Notiflix from "notiflix";
 
-export const fetchPackages = createAsyncThunk(
+export const fetchAllPackages = createAsyncThunk(
   "package/all",
   async (_, thunkApi) => {
     try {
       const { data } = await instance.get("package/all");
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchPackages = createAsyncThunk(
+  "package",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await instance.get("package");
       return data;
     } catch (error: unknown) {
       if (error instanceof Error)

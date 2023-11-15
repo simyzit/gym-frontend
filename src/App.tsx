@@ -21,6 +21,8 @@ import MembershipDashboard from "./components/membershipDashboard/MembershipDash
 import ProfileDashboard from "./components/profileDashboard/ProfileDashvoard";
 import OrdersDashboard from "./components/ordersDashboard/OrdersDashvoard";
 import PrivateRoute from "./utils/router/privateRoute";
+import MyMebershipDashboard from "./components/myMebershipDashboard/MyMebershipDashboard";
+import VisitsDashboard from "./components/visitsDashboard/VisitsDashboard";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -71,6 +73,8 @@ function App() {
           />
           <Route path="/profile" element={<ProfileDashboard />} />
           <Route path="/orders" element={<OrdersDashboard />} />
+          <Route path="/visits" element={<VisitsDashboard />} />
+          <Route path="/my-membership" element={<MyMebershipDashboard />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/membership" element={<Membership />} />

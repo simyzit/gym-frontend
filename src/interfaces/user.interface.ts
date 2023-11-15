@@ -41,14 +41,13 @@ export interface RefreshResponse {
 
 export interface IAuthState {
   user: {
-    name?: string;
-    surname?: string;
-    email?: string;
-    phone?: string;
-    avatarURL?: string;
-    role?: string;
+    name: string;
+    surname: string;
+    email: string;
+    phone: string;
+    avatarURL: string;
+    role: string;
     qrCode?: string;
-    city?: string;
   };
   accessToken: string;
   isLoggedIn: boolean;
@@ -67,13 +66,39 @@ export interface IUserRegistrationPayload {
 }
 
 export interface IUserPayload {
+  user: {
+    name: string;
+    surname: string;
+    email: string;
+    phone: string;
+    avatarURL: string;
+    role: string;
+    qrCode?: string;
+  };
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface IUpdateUserAvatarPayload {
+  avatarURL: string;
+}
+
+export interface IUserCurrentSuccessPayload {
   name: string;
   surname: string;
   email: string;
   phone: string;
   avatarURL: string;
-  accessToken: string;
-  refreshToken: string;
+  role: string;
+  qrCode?: string;
+}
+
+export interface IUserEditPayload {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  avatarURL: string;
   role: string;
   qrCode?: string;
 }
@@ -86,6 +111,7 @@ export interface IUser {
   phone: string;
   avatarURL: string;
   role: string;
+  qrCode?: string;
 }
 
 export interface IUserStore {

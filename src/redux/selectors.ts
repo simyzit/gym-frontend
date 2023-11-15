@@ -7,8 +7,11 @@ export const useCustomSelector = () => {
     getIsRegister: useAppSelector((state) => state.auth.isRegister),
     getToken: useAppSelector((state) => state.auth.accessToken),
     getAllPackages: useAppSelector((state) => state.package.allItems),
+    getPackages: useAppSelector((state) => state.package.allItems),
     getAllUsers: useAppSelector((state) => state.user.allItems),
     getAllOrders: useAppSelector((state) => state.order.allItems),
+    getVisits: useAppSelector((state) => state.visit.allItems),
     getUser: useAppSelector((state) => state.auth.user),
+    getQrCode: useAppSelector((state) => state.auth.user.qrCode),
   };
 };

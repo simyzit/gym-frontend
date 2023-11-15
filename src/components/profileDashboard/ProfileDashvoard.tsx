@@ -33,21 +33,31 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const ProfileDashboard = () => {
+  const [visibleBtnUpdate, setVisibleBtnUpdate] = useState(false);
   const [imageSelected, setImageSelected] = useState<any>(null);
   const dispatch = useAppDispatch();
-  const { getIsLoggedIn, getToken: token, getUser: user } = useCustomSelector();
-  const { handleSubmit, control, register, setValue, getValues } =
-    useForm<IUserPayload>({
-      defaultValues: {
-        name: "",
-        surname: "",
-        email: "",
-        phone: "",
-      },
-    });
+  const {
+    getToken: token,
+    getUser: user,
+    getQrCode: qrCode,
+  } = useCustomSelector();
+  const { handleSubmit, control, register, setValue } = useForm<IUser>({
+    defaultValues: {
+      name: "",
+      surname: "",
+      email: "",
+      phone: "",
+    },
+  });
   const { errors } = useFormState({
     control,
   });
+
+  useEffect(() => {
+    console.log(user);
+
+    console.log(qrCode);
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -70,6 +80,7 @@ const ProfileDashboard = () => {
   };
 
   const handleFileSelect = (event: any) => {
+    event.target.files[0] && setVisibleBtnUpdate(true);
     setImageSelected(event.target.files[0]);
   };
 
@@ -112,15 +123,16 @@ const ProfileDashboard = () => {
               Upload file
               <VisuallyHiddenInput type="file" onChange={handleFileSelect} />
             </Button>
-
-            <Button
-              component="label"
-              variant="contained"
-              onClick={uploadImage}
-              sx={{ marginTop: 2 }}
-            >
-              Update
-            </Button>
+            {visibleBtnUpdate && (
+              <Button
+                component="label"
+                variant="contained"
+                onClick={uploadImage}
+                sx={{ marginTop: 2 }}
+              >
+                Update
+              </Button>
+            )}
           </div>
 
           <div className={cl.profileInfoContainer}>

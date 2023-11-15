@@ -7,22 +7,13 @@ import {
   buyPackage,
   deletePackage,
   editPackage,
-  fetchPackages,
+  fetchAllPackages,
 } from "../../redux/package/packageOperation";
 import { IPackage } from "../../interfaces/package.interface";
 import Loader from "../UI/loader/loader";
 import { FaEdit } from "react-icons/fa";
 import Modal from "../UI/modal/Modal";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import {
   Controller,
   SubmitHandler,
@@ -56,7 +47,7 @@ const MembershipCard: FC<IPropsMembershipCard> = ({ isAdmin }) => {
   });
 
   useEffect(() => {
-    dispatch(fetchPackages());
+    dispatch(fetchAllPackages());
   }, [dispatch]);
 
   const handleEdit = (value: IPackage) => {

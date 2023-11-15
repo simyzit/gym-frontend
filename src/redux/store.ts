@@ -16,6 +16,7 @@ import { authReducer } from "./auth/authSlice";
 import { packageReducer } from "./package/packageSlice";
 import { userReducer } from "./user/userSlice";
 import { orderReducer } from "./order/orderSlice";
+import { visitReducer } from "./visits/visitsSlice";
 
 const authPersistConfig = {
   key: "auth",
@@ -29,6 +30,7 @@ export const store = configureStore({
     package: packageReducer,
     user: userReducer,
     order: orderReducer,
+    visit: visitReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

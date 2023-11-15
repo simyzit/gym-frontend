@@ -5,29 +5,28 @@ import { useCustomSelector } from "../../redux/selectors";
 import { AppDispatch, RootState } from "../../redux/store";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
-import cl from "./OrdersDashboard.module.css";
+import cl from "./VisitsDashboard.module.css";
 
 import NavbarDashboard from "../navigateDashboard/NavbarDashboard";
-import { fetchOrders } from "../../redux/order/orderOperation";
+import { fetchVisits } from "../../redux/visits/visitsOperation";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-const Orders = () => {
+const VisitsDashboard = () => {
   const dispatch = useAppDispatch();
-  const { getAllOrders } = useCustomSelector();
+  const { getVisits } = useCustomSelector();
 
   useEffect(() => {
-    dispatch(fetchOrders());
+    dispatch(fetchVisits());
   }, [dispatch]);
 
   const columns = useMemo(
     () => [
       { field: "_id", headerName: "ID", width: 170 },
       { field: "createdAt", headerName: "Created At", width: 200 },
-      { field: "updatedAt", headerName: "Updated At", width: 200 },
-      { field: "userName", headerName: "User name", width: 100 },
-      { field: "packageName", headerName: "Package name", width: 220 },
+      { field: "updatedAt", headerName: "Updated At", width: 100 },
+      { field: "userName", headerName: "Username", width: 100 },
     ],
     []
   );
@@ -51,11 +50,11 @@ const Orders = () => {
             component="h5"
             sx={{ textAlign: "center", mt: 3, mb: 3 }}
           >
-            Manage orders
+            Visits
           </Typography>
           <DataGrid
             columns={columns}
-            rows={getAllOrders}
+            rows={getVisits}
             getRowId={(row) => row._id}
             initialState={{
               pagination: {
@@ -71,4 +70,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default VisitsDashboard;

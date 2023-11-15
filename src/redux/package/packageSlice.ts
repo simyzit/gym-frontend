@@ -5,6 +5,7 @@ import {
   buyPackage,
   deletePackage,
   editPackage,
+  fetchAllPackages,
   fetchPackages,
 } from "./packageOperation";
 import {
@@ -13,6 +14,7 @@ import {
   deletePackageReducer,
   editPackageReducer,
   getAllPackagesReducer,
+  getPackagesReducer,
   pendingPackageReducer,
   rejectedPackageReducer,
 } from "./packageReducer";
@@ -32,7 +34,8 @@ const packageSlice = createSlice({
   reducers: {},
   extraReducers: (builder) =>
     builder
-      .addCase(fetchPackages.fulfilled, getAllPackagesReducer)
+      .addCase(fetchAllPackages.fulfilled, getAllPackagesReducer)
+      .addCase(fetchPackages.fulfilled, getPackagesReducer)
       .addCase(deletePackage.fulfilled, deletePackageReducer)
       .addCase(editPackage.fulfilled, editPackageReducer)
       .addCase(buyPackage.fulfilled, buyPackageReducer)
