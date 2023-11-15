@@ -32,7 +32,6 @@ function App() {
     getIsRefreshing: isRefreshing,
     getIsLoggedIn,
   } = useCustomSelector();
-  const [rtlCache, setRtlCache] = useState<any>(null);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -44,6 +43,8 @@ function App() {
   const avatar = searchParams.get("avatar");
   const role = searchParams.get("role");
   const surname = searchParams.get("surname");
+  const days = searchParams.get("days");
+  const qrCode = searchParams.get("qrCode");
 
   useEffect(() => {
     if (token) {
@@ -56,11 +57,30 @@ function App() {
   useEffect(() => {
     if (accessToken) {
       dispatch(
-        googleApi({ accessToken, email, avatar, refreshToken, role, surname })
+        googleApi({
+          accessToken,
+          email,
+          avatar,
+          refreshToken,
+          role,
+          surname,
+          qrCode,
+          days,
+        })
       );
       navigate("/profile");
     }
-  }, [dispatch, accessToken, email, avatar, refreshToken, role, surname]);
+  }, [
+    dispatch,
+    accessToken,
+    email,
+    avatar,
+    refreshToken,
+    role,
+    surname,
+    qrCode,
+    days,
+  ]);
 
   return (
     <>

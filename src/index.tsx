@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <BrowserRouter basename="/gym-frontend/">
+    <BrowserRouter basename="/">
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>
