@@ -3,21 +3,35 @@ import { Link } from "react-router-dom";
 import cl from "./NavbarDashboard.module.css";
 import logo from "../../assets/logo.png";
 import { useCustomSelector } from "../../redux/selectors";
-import { Button } from "@mui/material";
-import Modal from "../UI/modal/Modal";
+import { Box, Button, Modal } from "@mui/material";
+import { AppDispatch } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { fetchCurrentUser } from "../../redux/auth/authOperation";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 4,
+  textAlign: "center",
+};
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
 
 const NavbarDashboard = () => {
-  const { getUser: user, getQrCode: qrCode } = useCustomSelector();
+  const dispatch = useAppDispatch();
+  const {
+    getUser: user,
+    getQrCode: qrCode,
+    getToken: token,
+  } = useCustomSelector();
   const [visible, setVisible] = useState<boolean>(false);
 
-  const handleVisible = () => {
-    setVisible(!visible);
-  };
-
-  useEffect(() => {
-    console.log(user);
-    console.log(qrCode);
-  }, []);
+  const handleClose = () => setVisible(false);
 
   return (
     <>
@@ -78,8 +92,15 @@ const NavbarDashboard = () => {
           </li>
         </ul>
       )}
-      <Modal visible={visible} setVisible={setVisible}>
-        <img style={{ backgroundColor: "#fff" }} src={qrCode} alt="qrCode" />
+      <Modal
+        open={visible}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <img src={qrCode} alt="qrCode" />
+        </Box>
       </Modal>
     </>
   );

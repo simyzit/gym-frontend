@@ -20,15 +20,16 @@ export const userLoginSuccessReducer = (
   state: IAuthState,
   action: PayloadAction<IUserPayload>
 ) => {
+  debugger;
   state.isLoggedIn = true;
   state.accessToken = action.payload.accessToken;
   state.user.email = action.payload.user.email;
-  state.user.qrCode = action.payload.user.qrCode;
   state.user.avatarURL = action.payload.user.avatarURL;
   state.user.phone = action.payload.user.phone;
   state.user.role = action.payload.user.role;
   state.user.name = action.payload.user.name;
   state.user.surname = action.payload.user.surname;
+  state.user.qrCode = action.payload.user.qrCode;
 };
 
 export const userCurrentSuccessReducer = (
@@ -43,7 +44,7 @@ export const userCurrentSuccessReducer = (
   state.user.avatarURL = action.payload.avatarURL;
   state.user.email = action.payload.email;
   state.user.role = action.payload.role;
-  state.user.qrCode = state.user.qrCode;
+  state.user.qrCode = action.payload.qrCode;
 };
 
 export const userLogoutSuccessReducer = (state: IAuthState) => {
