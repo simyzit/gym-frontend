@@ -30,6 +30,7 @@ import PrivateRoute from "./utils/router/privateRoute";
 import MyMebershipDashboard from "./components/myMebershipDashboard/MyMebershipDashboard";
 import VisitsDashboard from "./components/visitsDashboard/VisitsDashboard";
 import SuccessVisit from "./routes/SuccessVisit";
+import UnsuccessVisit from "./routes/UnsuccessVisit";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -111,6 +112,7 @@ function App() {
         <Route path="/trainers" element={<Trainers />} />
         <Route path="/success-verified" element={<SuccessVerified />} />
         <Route path="/success-visit" element={<SuccessVisit />} />
+        <Route path="/unsuccess-visit" element={<UnsuccessVisit />} />
       </Routes>
     </>
   );
