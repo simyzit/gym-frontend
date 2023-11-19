@@ -52,13 +52,18 @@ const VerifeidAgain = () => {
         <Button
           onClick={() => onSubmit()}
           variant="contained"
-          sx={{ width: "12%" }}
+          sx={{ width: "30%" }}
         >
           Resend verification link
         </Button>
         <p
           onClick={() => navigate("/")}
-          style={{ color: "blue", fontSize: 16, textAlign: "center" }}
+          style={{
+            color: "blue",
+            fontSize: 14,
+            textAlign: "center",
+            cursor: "pointer",
+          }}
         >
           Home page
         </p>
