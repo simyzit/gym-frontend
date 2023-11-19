@@ -126,6 +126,10 @@ export interface IUser {
   qrCode?: string;
 }
 
+export interface IVerifyAgain {
+  email: string;
+}
+
 export interface IUserStore {
   allItems: IUser[];
   isLoading: boolean;

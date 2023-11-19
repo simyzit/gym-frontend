@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import cl from "./NavbarDashboard.module.css";
 import logo from "../../assets/logo.png";
@@ -6,7 +6,6 @@ import { useCustomSelector } from "../../redux/selectors";
 import { Box, Button, Modal } from "@mui/material";
 import { AppDispatch } from "../../redux/store";
 import { useDispatch } from "react-redux";
-import { fetchCurrentUser } from "../../redux/auth/authOperation";
 
 const style = {
   position: "absolute" as "absolute",

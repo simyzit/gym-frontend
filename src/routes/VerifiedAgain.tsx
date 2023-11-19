@@ -2,12 +2,17 @@ import React from "react";
 import verified from "../assets/verified.png";
 import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../App";
+import { verifiedAgain } from "../redux/auth/authOperation";
+import { useCustomSelector } from "../redux/selectors";
 
 const VerifeidAgain = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { getUser: user } = useCustomSelector();
 
   const onSubmit = () => {
-    navigate("/membership");
+    dispatch(verifiedAgain(user.email));
   };
 
   return (
@@ -53,6 +58,12 @@ const VerifeidAgain = () => {
         >
           Resend verification link
         </Button>
+        <p
+          onClick={() => navigate("/")}
+          style={{ color: "blue", fontSize: 16, textAlign: "center" }}
+        >
+          Home page
+        </p>
       </div>
     </div>
   );
