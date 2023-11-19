@@ -6,7 +6,7 @@ import { IRouteProps } from "../../interfaces/user.interface";
 export const PrivateRoute = () => {
   const { getIsLoggedIn: isLoggedIn, getIsRefreshing: isRefreshing } =
     useCustomSelector();
-
+  debugger;
   const shouldRedirect = !isLoggedIn && !isRefreshing;
 
   return shouldRedirect ? <Navigate to="/" /> : <Outlet />;

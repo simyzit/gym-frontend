@@ -38,7 +38,6 @@ const SigninForm: FC<ISignInFormProps> = ({ setModal }) => {
       instance.patch(`auth/forgot/password/${values.email}`);
 
       setModal(false);
-      navigate("/");
     } else {
       await dispatch(login(values));
 

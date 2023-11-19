@@ -4,7 +4,13 @@ import Home from "./routes/Home";
 import Membership from "./routes/Membership";
 import About from "./routes/About";
 import Trainers from "./routes/Trainers";
-import { Route, Routes, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import {
   fetchCurrentUser,
   googleApi,
@@ -23,6 +29,7 @@ import OrdersDashboard from "./components/ordersDashboard/OrdersDashvoard";
 import PrivateRoute from "./utils/router/privateRoute";
 import MyMebershipDashboard from "./components/myMebershipDashboard/MyMebershipDashboard";
 import VisitsDashboard from "./components/visitsDashboard/VisitsDashboard";
+import SuccessVisit from "./routes/SuccessVisit";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -68,7 +75,9 @@ function App() {
           days,
         })
       );
-      navigate("/profile");
+      if (isLogin) {
+        navigate("/profile");
+      }
     }
   }, [
     dispatch,
@@ -100,7 +109,8 @@ function App() {
         <Route path="/membership" element={<Membership />} />
         <Route path="/about" element={<About />} />
         <Route path="/trainers" element={<Trainers />} />
-        <Route path="/success" element={<SuccessVerified />} />
+        <Route path="/success-verified" element={<SuccessVerified />} />
+        <Route path="/success-visit" element={<SuccessVisit />} />
       </Routes>
     </>
   );

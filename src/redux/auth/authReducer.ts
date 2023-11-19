@@ -4,6 +4,7 @@ import {
   IUpdateUserAvatarPayload,
   IUserCurrentSuccessPayload,
   IUserEditPayload,
+  IUserGoogleLoginPayload,
   IUserPayload,
   IUserRegistrationPayload,
 } from "../../interfaces/user.interface";
@@ -74,11 +75,16 @@ export const rejectedReducer = (state: IAuthState) => {
 
 export const userGoogleLoginReducer = (
   state: IAuthState,
-  action: PayloadAction<IUserPayload>
+  action: PayloadAction<IUserGoogleLoginPayload>
 ) => {
   state.isLoggedIn = true;
-  state.user.email = action.payload.user.email;
-  state.user.qrCode = action.payload.user.qrCode;
+  state.user.name = action.payload.name;
+  state.user.surname = action.payload.surname;
+  state.user.phone = action.payload.phone;
+  state.user.avatarURL = action.payload.avatarURL;
+  state.user.email = action.payload.email;
+  state.user.role = action.payload.role;
+  state.user.qrCode = action.payload.qrCode;
   state.accessToken = action.payload.accessToken;
 };
 

@@ -79,6 +79,18 @@ export interface IUserPayload {
   refreshToken: string;
 }
 
+export interface IUserGoogleLoginPayload {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  avatarURL: string;
+  role: string;
+  qrCode: string;
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface IUpdateUserAvatarPayload {
   avatarURL: string;
 }
