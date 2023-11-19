@@ -16,7 +16,7 @@ const UnsuccessVisit = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#EC5F41",
+        backgroundColor: "#F95959",
         height: "100vh",
       }}
     >
