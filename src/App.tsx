@@ -4,23 +4,11 @@ import Home from "./routes/Home";
 import Membership from "./routes/Membership";
 import About from "./routes/About";
 import Trainers from "./routes/Trainers";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
-import {
-  fetchCurrentUser,
-  googleApi,
-  logout,
-} from "./redux/auth/authOperation";
+import { Route, Routes, useNavigate, useSearchParams } from "react-router-dom";
+import { fetchCurrentUser, googleApi } from "./redux/auth/authOperation";
 import { AppDispatch } from "./redux/store";
 import { useDispatch } from "react-redux";
 import { useCustomSelector } from "./redux/selectors";
-import Loader from "./components/UI/loader/loader";
-import Dashboard from "./routes/Dashboard";
 import SuccessVerified from "./routes/SuccessVerified";
 import UsersDashboard from "./components/usersDashboard/usersDashboard";
 import MembershipDashboard from "./components/membershipDashboard/MembershipDashboard";
@@ -31,6 +19,7 @@ import MyMebershipDashboard from "./components/myMebershipDashboard/MyMebershipD
 import VisitsDashboard from "./components/visitsDashboard/VisitsDashboard";
 import SuccessVisit from "./routes/SuccessVisit";
 import UnsuccessVisit from "./routes/UnsuccessVisit";
+import VerifeidAgain from "./routes/VerifiedAgain";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
@@ -113,6 +102,7 @@ function App() {
         <Route path="/success-verified" element={<SuccessVerified />} />
         <Route path="/success-visit" element={<SuccessVisit />} />
         <Route path="/unsuccess-visit" element={<UnsuccessVisit />} />
+        <Route path="/verified-again" element={<VerifeidAgain />} />
       </Routes>
     </>
   );
