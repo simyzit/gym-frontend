@@ -7,6 +7,7 @@ import {
   IUserGoogleLoginPayload,
   IUserPayload,
   IUserRegistrationPayload,
+  IVerifyAgain,
 } from "../../interfaces/user.interface";
 
 export const userRegistrationSuccessReducer = (

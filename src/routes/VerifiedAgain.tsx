@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../App";
 import { verifiedAgain } from "../redux/auth/authOperation";
 import { useCustomSelector } from "../redux/selectors";
+import { instance } from "../axios";
 
 const VerifeidAgain = () => {
   const dispatch = useAppDispatch();
@@ -12,7 +13,9 @@ const VerifeidAgain = () => {
   const { getUser: user } = useCustomSelector();
 
   const onSubmit = () => {
-    dispatch(verifiedAgain(user.email));
+    instance.get(`/auth/verify`, {
+      email: user.email,
+    });
   };
 
   return (

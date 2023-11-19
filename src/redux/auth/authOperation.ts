@@ -5,6 +5,7 @@ import {
   IRegisterUser,
   IUser,
   IUserPayload,
+  IVerifyAgain,
 } from "../../interfaces/user.interface";
 import Notiflix from "notiflix";
 
@@ -129,18 +130,20 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export const verifiedAgain = createAsyncThunk(
-  "auth/verifiedAgain",
-  async (data, thunkAPI) => {
-    try {
-      const res = await instance.get(`/auth/verify/${data}`);
-      return res.data;
-    } catch (error: unknown) {
-      if (error instanceof Error)
-        return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const verifiedAgain = createAsyncThunk(
+//   "auth/verifiedAgain",
+//   async (data: IVerifyAgain, thunkAPI) => {
+//     try {
+//       const res = await instance.get(`/auth/verify`, {
+//         email: data.email
+//       });
+//       return res.data;
+//     } catch (error: unknown) {
+//       if (error instanceof Error)
+//         return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   try {
