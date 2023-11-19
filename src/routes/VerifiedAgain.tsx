@@ -3,7 +3,6 @@ import verified from "../assets/verified.png";
 import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../App";
-import { verifiedAgain } from "../redux/auth/authOperation";
 import { useCustomSelector } from "../redux/selectors";
 import { instance } from "../axios";
 
@@ -12,11 +11,7 @@ const VerifeidAgain = () => {
   const navigate = useNavigate();
   const { getUser: user } = useCustomSelector();
 
-  const onSubmit = () => {
-    instance.get(`/auth/verify`, {
-      email: user.email,
-    });
-  };
+  const onSubmit = () => {};
 
   return (
     <div
