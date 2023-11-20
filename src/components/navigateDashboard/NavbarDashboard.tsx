@@ -98,7 +98,11 @@ const NavbarDashboard = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <img src={qrCode} alt="qrCode" />
+          <img
+            src={qrCode}
+            alt="qrCode"
+            style={{ height: "90%", width: "90%" }}
+          />
         </Box>
       </Modal>
     </>

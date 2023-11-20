@@ -90,3 +90,14 @@ p {
  .fielsContainer {
   display: flex;
  }
+
+ @media screen and (max-width: 1000px) {
+  .profileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .userCardContainer {
+    width: 100%;
+  }
+}
