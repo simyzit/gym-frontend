@@ -36,11 +36,11 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const Users = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const [modal, setModal] = useState<boolean>(false);
-  const [confirm, setConfirm] = useState<boolean>(false);
   const [currentValues, setCurrentValues] = useState<IUser>();
   const { getAllUsers, getUser: user } = useCustomSelector();
   const [visibleConfirm, setVisibleConfirm] = useState<boolean>(false);
+  const [visibleDeleteConfirm, setVisibleDeleteConfirm] =
+    useState<boolean>(false);
   const { register, handleSubmit, control, setValue } = useForm<IUser>({
     defaultValues: {
       _id: "",
@@ -51,12 +51,14 @@ const Users = () => {
       role: "",
     },
   });
+
   const { errors } = useFormState({
     control,
   });
 
   const [role, setRole] = useState<string>("");
   const [id, setId] = useState<string>("");
+  const [confirm, setConfirm] = useState<boolean>(false);
 
   const handleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value as string);
@@ -144,19 +146,23 @@ const Users = () => {
             { field: "phone", headerName: "Phone", width: 200 },
             { field: "role", headerName: "Role", width: 100 },
           ],
-    []
+    [user.role]
   );
 
   const onSubmit = async (values: IUser) => {
+    setVisible(false);
     setVisibleConfirm(true);
-    values._id = id;
-
     setCurrentValues(values);
   };
 
   const onConfirmEdit = () => {
     dispatch(editUser(currentValues as IUser));
     setVisibleConfirm(false);
+  };
+
+  const onConfirmDelete = () => {
+    dispatch(deleteUser(id));
+    setVisibleDeleteConfirm(false);
   };
 
   const handleEdit = (
@@ -177,7 +183,8 @@ const Users = () => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     cellVaues: { row: IUser }
   ) => {
-    dispatch(deleteUser(cellVaues.row._id));
+    setVisibleDeleteConfirm(true);
+    setId(cellVaues.row._id);
   };
 
   const handleVisible = () => {
@@ -238,6 +245,34 @@ const Users = () => {
                 marginTop: 2,
               }}
               onClick={() => setVisibleConfirm(false)}
+            >
+              Not sure
+            </Button>
+          </Modal>
+          <Modal
+            visible={visibleDeleteConfirm}
+            setVisible={setVisibleDeleteConfirm}
+          >
+            <p>Are you sure?</p>
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth={true}
+              sx={{
+                marginTop: 2,
+              }}
+              onClick={() => onConfirmDelete()}
+            >
+              Sure
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              fullWidth={true}
+              sx={{
+                marginTop: 2,
+              }}
+              onClick={() => setVisibleDeleteConfirm(false)}
             >
               Not sure
             </Button>
@@ -334,10 +369,6 @@ const Users = () => {
                 fullWidth={true}
                 sx={{
                   marginTop: 2,
-                }}
-                onClick={() => {
-                  setVisible(false);
-                  setVisibleConfirm(true);
                 }}
               >
                 Submit
