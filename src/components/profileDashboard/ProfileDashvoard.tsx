@@ -54,12 +54,6 @@ const ProfileDashboard = () => {
   });
 
   useEffect(() => {
-    console.log(user);
-
-    console.log(qrCode);
-  }, []);
-
-  useEffect(() => {
     if (token) {
       dispatch(fetchCurrentUser());
     }

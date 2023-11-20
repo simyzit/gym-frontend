@@ -47,8 +47,6 @@ function App() {
     if (token) {
       dispatch(fetchCurrentUser());
     }
-
-    setIsLogin(getIsLoggedIn);
   }, [dispatch, token]);
 
   useEffect(() => {
@@ -65,7 +63,7 @@ function App() {
           days,
         })
       );
-      if (isLogin) {
+      if (getIsLoggedIn) {
         navigate("/profile");
       }
     }
@@ -84,6 +82,16 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/membership" element={<Membership />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/trainers" element={<Trainers />} />
+        <Route path="/success-verified" element={<SuccessVerified />} />
+        <Route path="/success-visit" element={<SuccessVisit />} />
+        <Route path="/unsuccess-visit" element={<UnsuccessVisit />} />
+        <Route path="/verified-again" element={<VerifeidAgain />} />
+        <Route path="*" element={<Home />} />
+
         <Route element={<PrivateRoute />}>
           <Route path="/users" element={<UsersDashboard />} />
           <Route
@@ -95,15 +103,6 @@ function App() {
           <Route path="/visits" element={<VisitsDashboard />} />
           <Route path="/my-membership" element={<MyMebershipDashboard />} />
         </Route>
-        <Route path="/" element={<Home />} />
-        <Route path="/membership" element={<Membership />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/trainers" element={<Trainers />} />
-        <Route path="/success-verified" element={<SuccessVerified />} />
-        <Route path="/success-visit" element={<SuccessVisit />} />
-        <Route path="/unsuccess-visit" element={<UnsuccessVisit />} />
-        <Route path="/verified-again" element={<VerifeidAgain />} />
-        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
