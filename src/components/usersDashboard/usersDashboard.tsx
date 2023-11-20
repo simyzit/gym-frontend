@@ -43,7 +43,6 @@ const Users = () => {
     useState<boolean>(false);
   const { register, handleSubmit, control, setValue } = useForm<IUser>({
     defaultValues: {
-      _id: "",
       name: "",
       surname: "",
       email: "",
@@ -176,6 +175,7 @@ const Users = () => {
     setValue("email", cellVaues.row.email);
     setValue("phone", cellVaues.row.phone);
     setValue("role", cellVaues.row.role);
+    setValue("id", cellVaues.row._id);
     setId(cellVaues.row._id);
   };
 

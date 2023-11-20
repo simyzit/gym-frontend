@@ -30,7 +30,7 @@ export const editUser = createAsyncThunk(
   "user/edit",
   async (data: IUser, thunkApi) => {
     try {
-      const user = await instance.patch(`/user/${data._id}`, {
+      const user = await instance.patch(`/user/${data.id}`, {
         name: data.name,
         surname: data.surname,
         phone: data.phone,
