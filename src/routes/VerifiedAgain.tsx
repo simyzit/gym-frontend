@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../App";
 import { useCustomSelector } from "../redux/selectors";
 import { instance } from "../axios";
-import { verifiedAgain } from "../redux/auth/authOperation";
 
 const VerifeidAgain = () => {
   const dispatch = useAppDispatch();
