@@ -130,20 +130,21 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export const verifiedAgain = createAsyncThunk(
-  "auth/verifydAgain",
-  async (data: any, thunkAPI) => {
-    try {
-      const res = await instance.get("/auth/verify", {
-        email: data.email,
-      });
-      return res.data;
-    } catch (error: unknown) {
-      if (error instanceof Error)
-        return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const verifiedAgain = createAsyncThunk(
+//   "auth/verifydAgain",
+//   async (data: any, thunkAPI) => {
+//     debugger;
+//     try {
+//       const res = await instance.get("/auth/verify", {
+//         email: data.email,
+//       });
+//       return res.data;
+//     } catch (error: unknown) {
+//       if (error instanceof Error)
+//         return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkApi) => {
   try {

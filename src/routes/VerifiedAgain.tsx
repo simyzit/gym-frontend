@@ -13,7 +13,7 @@ const VerifeidAgain = () => {
   const { getUser: user } = useCustomSelector();
 
   const onSubmit = () => {
-    dispatch(verifiedAgain(user.email));
+    // dispatch(verifiedAgain(user.email));
   };
 
   return (
