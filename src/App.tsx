@@ -103,6 +103,7 @@ function App() {
         <Route path="/success-visit" element={<SuccessVisit />} />
         <Route path="/unsuccess-visit" element={<UnsuccessVisit />} />
         <Route path="/verified-again" element={<VerifeidAgain />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
